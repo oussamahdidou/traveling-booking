@@ -1,0 +1,7 @@
+<ngx-slick-carousel class="carousel" [config]="slideConfig">
+    <div ngxSlickItem class="slide">
+        @for (slide of slides; track $index) {
+        <img [src]="slide.img" [alt]="slide.alt">
+        }
+    </div>
+</ngx-slick-carousel>

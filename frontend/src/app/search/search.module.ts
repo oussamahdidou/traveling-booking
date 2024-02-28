@@ -1,12 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CityComponent } from './city/city.component';
+import { LocationComponent } from './location/location.component';
+import { QueryComponent } from './query/query.component';
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
+  {
+    path: '',
+    children: [
 
+
+      { path: 'city/:id', component: CityComponent },
+      { path: 'location/:latitude/:longitude', component: LocationComponent },
+      { path: 'query/:query', component: QueryComponent }
+    ],
+  },
+];
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+
+    RouterModule.forChild(routes),
+
   ]
 })
 export class SearchModule { }
