@@ -62,3 +62,32 @@
   display: block;
   opacity: 1;
 }
+select {
+  font-weight: 700;
+  outline: none;
+}
+.item img {
+  width: 100%;
+}
+.item:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #6f00ff;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: "\2605";
+  font-size: 20px;
+}
