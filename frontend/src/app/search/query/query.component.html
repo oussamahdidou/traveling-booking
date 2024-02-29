@@ -1,1 +1,21 @@
-<p>query works!</p>
+<div class="slider-part justify-content-center align-items-center mt-3">
+    <div class="container-fluid slide-container d-flex ">
+        @for (item of images; track $index) {
+        <div (click)="movetonext()" class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
+        'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
+        'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
+        ">
+            <img [src]="item" alt="" class="slider-img">
+            <div class="slider-caption p-5">
+                <h3>Dubai Hotel</h3>
+                <h6>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et labore veritatis soluta eum vel. Non,
+                    alias, qui est autem architecto eos nostrum sapiente ratione quo soluta voluptatum maxime tempore
+                    repellat ea at facere repudiandae eligendi molestias. Aliquid commodi facilis modi?
+                </h6>
+            </div>
+        </div>
+
+        }
+    </div>
+</div>
