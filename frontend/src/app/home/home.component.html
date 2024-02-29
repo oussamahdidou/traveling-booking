@@ -1,0 +1,13 @@
+<div class="slider-part justify-content-center align-items-center py-5">
+    <div class="container-fluid slide-container d-flex ">
+        @for (item of images; track $index) {
+        <div (click)="movetonext()" class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
+        'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
+        'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
+        ">
+            <img [src]="item" alt="" class="slider-img">
+        </div>
+
+        }
+    </div>
+</div>
