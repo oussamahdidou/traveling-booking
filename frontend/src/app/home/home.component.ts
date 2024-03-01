@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
     }
 
   }
+
   selectedIndex: number = 0;
   images: string[] = [
     "https://assets.kerzner.com/api/public/content/22a13cd86bef48b28e9ff17642419a6c?v=abeba10a&t=w2880",

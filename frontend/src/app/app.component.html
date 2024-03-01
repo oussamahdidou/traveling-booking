@@ -12,38 +12,51 @@
           d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
       </svg>
     </button>
-    <input type="text" [(ngModel)]="search" placeholder="u can search for a place or a city ...">
-    @if (search.length>=3) {
+    <input type="text" [(ngModel)]="search" (input)="_search()" placeholder="u can search for a place or a city ...">
+    @if (search.length>=3&&(entreprises.length>0||villes.length>0)) {
     <div class="search-items d-flex flex-column py-3 ">
+      @for (item of entreprises; track $index)
+      {
       <div class="search-item d-flex justify-content-between align-items-center p-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
           viewBox="0 0 16 16">
           <path
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
-        <h5 class="m-0 ">Paris</h5>
+        <h5 class="m-0 ">{{item.name}}</h5>
       </div>
+      }
+      @for (item of villes; track $index)
+      {
       <div class="search-item d-flex justify-content-between align-items-center p-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
           viewBox="0 0 16 16">
           <path
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
         </svg>
-        <h5 class="m-0 ">Paris</h5>
+        <h5 class="m-0 ">{{item.name}}</h5>
       </div>
+      }
+
     </div>
 
     }
   </div>
 
   <div class="nav-items d-flex">
-    <p class="nav-item m-0 p-0 me-4">Ads</p>
+    <p class="nav-item m-0 p-0 me-4">Map</p>
     <p class="nav-item m-0 p-0 mx-4">News</p>
-    <p class="nav-item m-0 p-0 ms-4">For u</p>
+    <p class="nav-item m-0 p-0 ms-4">Just For You</p>
   </div>
   <div class="Auth-container">
-    <a href="" class="px-4  login">Login</a>
+    @if (authservice.$isloggedin|async) {
+
+    <a href="" class="px-3  register" (click)="logout()">Logout</a>
+    }
+    @else {
+    <a href="/auth/login" class="px-4  login">Login</a>
     <a href="" class="px-3  register">Register</a>
+    }
 
 
   </div>
