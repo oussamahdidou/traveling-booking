@@ -1,1 +1,171 @@
-<p>entreprise works!</p>
+<div class="container gard-img mb-5">
+    <div class="title-container d-flex justify-content-center align-items-center">
+        <div class="title px-5 py-5">
+            <h3 class="m-0">Place Title</h3>
+        </div>
+    </div>
+    <img src="https://assets.kerzner.com/api/public/content/22a13cd86bef48b28e9ff17642419a6c?v=abeba10a&t=w2880" alt="">
+</div>
+
+<div class="container-fluid row">
+    <div class="col-lg-8 p-3 py-5 d-flex flex-column gap-3 ">
+        <div class="info-container py-4 px-4 mt-5">
+            <h3 class="m-0 info-title">Place Title</h3>
+            <h4 class="m-0 text-secondary">Place Adress</h4>
+            <p class="text-secondary bio">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dolorum iste, ipsa,
+                asperiores id laboriosam accusamus nostrum tempore quos rerum vel eaque perferendis architecto impedit,
+                animi a cupiditate veritatis. Accusamus pariatur error ratione animi necessitatibus modi porro
+                reiciendis quibusdam.
+            </p>
+            <p class="bio m-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                </svg>
+                Voir la Localisation
+            </p>
+            <h3 class="pt-4">
+                Avis
+            </h3>
+            <div class="p-5 reviews-container row">
+                <div class="reviews  col-lg-6">
+                    <div class="rating d-flex align-items-center">
+                        <h4 class="fw-bold m-0 ">Average Rating : 3/5</h4>
+                        <input type="radio">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="reviews border-0 col-lg-6">
+                    <div class="rating d-flex align-items-center">
+                        <h4 class="fw-bold m-0 mx-3"> 3/5</h4>
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-container py-4 px-3">
+            <div class="comment-input-container d-flex align-items-center ">
+                <input class="comment-input p-2 px-3" type="text" placeholder="Add a new comment ...">
+                <button class="comment-button p-2 px-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0" />
+                    </svg>
+                </button>
+
+
+            </div>
+            @if (comments.length===0) {
+            <p class="py-4 m-0 text-center text-secondary fw-bold">no comments yet</p>
+            }
+            @else {
+            <div class="comments-container d-flex flex-column align-items-center py-4">
+                @for (item of comments; track $index) {
+                <div class="comment-item px-3 mb-3">
+                    <h5>{{item.username}}</h5>
+                    <h6 class="text-secondary text-end">
+                        {{item.content}}
+                    </h6>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-4 py-4">
+        <h3 class="m-0 ps-3"> Similar Places</h3>
+        <div class="d-flex flex-column  gap-3 py-4">
+            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2  ">
+                <img src="http://via.placeholder.com/640x360" alt="">
+                <div class="card-content p-3">
+                    <h5>Hotel Name</h5>
+                    <h6 class="text-secondary mb-0">Hotel adress</h6>
+                    <div class="rating">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
+                <img src="http://via.placeholder.com/640x360" alt="">
+                <div class="card-content p-3">
+                    <h5>Hotel Name</h5>
+                    <h6 class="text-secondary mb-0">Hotel adress</h6>
+                    <div class="rating">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
+                <img src="http://via.placeholder.com/640x360" alt="">
+                <div class="card-content p-3">
+                    <h5>Hotel Name</h5>
+                    <h6 class="text-secondary mb-0">Hotel adress</h6>
+                    <div class="rating">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
+                <img src="http://via.placeholder.com/640x360" alt="">
+                <div class="card-content p-3">
+                    <h5>Hotel Name</h5>
+                    <h6 class="text-secondary mb-0">Hotel adress</h6>
+                    <div class="rating">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
