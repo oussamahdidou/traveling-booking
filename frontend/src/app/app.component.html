@@ -1,3 +1,4 @@
+@if (showNavbar) {
 <nav class="d-flex header p-3 justify-content-between align-items-center container-fluid">
   <a href="">
     <h5 class="m-0 p-0"><span style="color: #a435f0;">Travel</span>Nest</h5>
@@ -46,8 +47,9 @@
 
 
   </div>
-</nav>
+</nav>}
 <router-outlet></router-outlet>
+@if(showNavbar){
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
   <!-- Section: Social media -->
@@ -169,4 +171,4 @@
   </div>
   <!-- Copyright -->
 </footer>
-<!-- Footer -->
+<!-- Footer -->}

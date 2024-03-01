@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'Auth',
+        path: 'auth',
         loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     },
     {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 @Component({
   selector: 'app-root',
@@ -10,7 +10,19 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  showNavbar: boolean = true;
+
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showNavbar = !['/auth/login', '/auth/register', '/search/map'].includes(this.router.url);
+      }
+    });
+  }
+
   title = 'client';
   search: string = '';
 
