@@ -1,14 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { SearchService } from '../../services/search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-city',
   standalone: true,
-  imports: [CommonModule],
+  providers: [SearchService],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   templateUrl: './city.component.html',
   styleUrl: './city.component.css'
 })
-export class CityComponent {
+export class CityComponent implements OnInit {
+  places: any[] = [];
+  constructor(private route: ActivatedRoute, private searchService: SearchService) { }
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const itemId = params['id'];
+      this.searchService.PlacesByCity(itemId).subscribe(
+        response => {
+          this.places = response;
+          console.log(this.places);
+        },
+        error => {
+          console.log(error)
+        });
+    });
+  }
   movetonext() {
     if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;
