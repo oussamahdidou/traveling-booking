@@ -10,7 +10,11 @@ export class SocialService {
 
   constructor(private http: HttpClient, private authservice: AuthService) { }
 
-
+  getuserrate(id: number): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Social/rate/' + id, {
+      headers: this.authservice.headers
+    });
+  }
   rate(rate: number, entrepriseId: number): Observable<any> {
     return this.http.post('http://localhost:5163/api/Social/Rate', {
       "appUserId": '',

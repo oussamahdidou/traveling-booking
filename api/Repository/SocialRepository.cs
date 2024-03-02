@@ -55,7 +55,7 @@ namespace api.Repository
 
         public async Task<List<Comment>> GetCommentsByPlace(int placeid)
         {
-            List<Comment> comments = await apiDbContext.Comments.Include(x => x.AppUser).Where(x => x.EntrepriseId == placeid).ToListAsync();
+            List<Comment> comments = await apiDbContext.Comments.Include(x => x.AppUser).Where(x => x.EntrepriseId == placeid).OrderByDescending(x => x.date).ToListAsync();
             return comments;
         }
 

@@ -28,6 +28,7 @@ export class CityComponent implements OnInit {
         });
     });
   }
+
   movetonext() {
     if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;

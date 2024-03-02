@@ -29,32 +29,33 @@
             <div class="p-5 reviews-container row">
                 <div class="reviews  col-lg-6">
                     <div class="rating d-flex align-items-center">
-                        <h4 class="fw-bold m-0 ">Average Rating : 3/5</h4>
+                        <h4 class="fw-bold m-0 ">Average Rating : {{ calculateAverageRate() }}/5</h4>
                         <input type="radio">
-                        <label></label>
+                        <label style="color: #6f00ff;"></label>
                     </div>
                 </div>
                 <div class="reviews border-0 col-lg-6">
                     <div class="rating d-flex align-items-center">
-                        <h4 class="fw-bold m-0 mx-3"> 3/5</h4>
-                        <input value="5" name="rating" id="star5" type="radio">
-                        <label for="star5"></label>
-                        <input value="4" name="rating" id="star4" type="radio">
-                        <label for="star4"></label>
-                        <input value="3" name="rating" id="star3" type="radio">
-                        <label for="star3"></label>
-                        <input value="2" name="rating" id="star2" type="radio">
-                        <label for="star2"></label>
-                        <input value="1" name="rating" id="star1" type="radio">
-                        <label for="star1"></label>
+                        <h4 class="fw-bold m-0 mx-3"> {{rating}}/5</h4>
+                        <input (change)="rate($event)" value="1" name="rating" id="star1" type="radio">
+                        <label [style.color]="rating>=1? '#6f00ff' : '#acacac'" for="star1"></label>
+                        <input (change)="rate($event)" value="2" name="rating" id="star2" type="radio">
+                        <label [style.color]="rating>=2? '#6f00ff' : '#acacac'" for="star2"></label>
+                        <input (change)="rate($event)" value="3" name="rating" id="star3" type="radio">
+                        <label [style.color]="rating>=3? '#6f00ff' : '#acacac'" for="star3"></label>
+                        <input (change)="rate($event)" value="4" name="rating" id="star4" type="radio">
+                        <label [style.color]="rating>=4? '#6f00ff' : '#acacac'" for="star4"></label>
+                        <input (change)="rate($event)" value="5" name="rating" id="star5" type="radio">
+                        <label [style.color]="rating>=5? '#6f00ff' : '#acacac'" for="star5"></label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="info-container py-4 px-3">
             <div class="comment-input-container d-flex align-items-center ">
-                <input class="comment-input p-2 px-3" type="text" placeholder="Add a new comment ...">
-                <button class="comment-button p-2 px-3">
+                <input class="comment-input p-2 px-3" type="text" name="comment" [(ngModel)]="comment"
+                    placeholder="Add a new comment ...">
+                <button class="comment-button p-2 px-3" (click)="addcomment()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
                         <path
@@ -71,7 +72,7 @@
             <div class="comments-container d-flex flex-column align-items-center py-4">
                 @for (item of comments; track $index) {
                 <div class="comment-item px-3 mb-3">
-                    <h5>{{item.username}}</h5>
+                    <h5>{{item.appUser.userName}}</h5>
                     <h6 class="text-secondary text-end">
                         {{item.content}}
                     </h6>
@@ -90,80 +91,21 @@
                     <h5>Hotel Name</h5>
                     <h6 class="text-secondary mb-0">Hotel adress</h6>
                     <div class="rating">
-                        <input value="5" name="rating" id="star5" type="radio">
-                        <label for="star5"></label>
-                        <input value="4" name="rating" id="star4" type="radio">
-                        <label for="star4"></label>
-                        <input value="3" name="rating" id="star3" type="radio">
-                        <label for="star3"></label>
-                        <input value="2" name="rating" id="star2" type="radio">
-                        <label for="star2"></label>
-                        <input value="1" name="rating" id="star1" type="radio">
-                        <label for="star1"></label>
+                        <input type="radio">
+                        <label></label>
+                        <input type="radio">
+                        <label></label>
+                        <input type="radio">
+                        <label></label>
+                        <input type="radio">
+                        <label></label>
+                        <input type="radio">
+                        <label></label>
                     </div>
 
                 </div>
             </div>
-            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
-                <img src="http://via.placeholder.com/640x360" alt="">
-                <div class="card-content p-3">
-                    <h5>Hotel Name</h5>
-                    <h6 class="text-secondary mb-0">Hotel adress</h6>
-                    <div class="rating">
-                        <input value="5" name="rating" id="star5" type="radio">
-                        <label for="star5"></label>
-                        <input value="4" name="rating" id="star4" type="radio">
-                        <label for="star4"></label>
-                        <input value="3" name="rating" id="star3" type="radio">
-                        <label for="star3"></label>
-                        <input value="2" name="rating" id="star2" type="radio">
-                        <label for="star2"></label>
-                        <input value="1" name="rating" id="star1" type="radio">
-                        <label for="star1"></label>
-                    </div>
 
-                </div>
-            </div>
-            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
-                <img src="http://via.placeholder.com/640x360" alt="">
-                <div class="card-content p-3">
-                    <h5>Hotel Name</h5>
-                    <h6 class="text-secondary mb-0">Hotel adress</h6>
-                    <div class="rating">
-                        <input value="5" name="rating" id="star5" type="radio">
-                        <label for="star5"></label>
-                        <input value="4" name="rating" id="star4" type="radio">
-                        <label for="star4"></label>
-                        <input value="3" name="rating" id="star3" type="radio">
-                        <label for="star3"></label>
-                        <input value="2" name="rating" id="star2" type="radio">
-                        <label for="star2"></label>
-                        <input value="1" name="rating" id="star1" type="radio">
-                        <label for="star1"></label>
-                    </div>
-
-                </div>
-            </div>
-            <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2">
-                <img src="http://via.placeholder.com/640x360" alt="">
-                <div class="card-content p-3">
-                    <h5>Hotel Name</h5>
-                    <h6 class="text-secondary mb-0">Hotel adress</h6>
-                    <div class="rating">
-                        <input value="5" name="rating" id="star5" type="radio">
-                        <label for="star5"></label>
-                        <input value="4" name="rating" id="star4" type="radio">
-                        <label for="star4"></label>
-                        <input value="3" name="rating" id="star3" type="radio">
-                        <label for="star3"></label>
-                        <input value="2" name="rating" id="star2" type="radio">
-                        <label for="star2"></label>
-                        <input value="1" name="rating" id="star1" type="radio">
-                        <label for="star1"></label>
-                    </div>
-
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -90,16 +90,21 @@
   display: none;
 }
 
+.reviews .rating label {
+  float: right;
+  cursor: pointer;
+  color: #acacac;
+  transition: color 0.3s;
+}
+.rating label:before {
+  content: "\2605";
+  font-size: 20px;
+}
 .rating label {
   float: right;
   cursor: pointer;
   color: #6f00ff;
   transition: color 0.3s;
-}
-
-.rating label:before {
-  content: "\2605";
-  font-size: 20px;
 }
 .hotel-card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
