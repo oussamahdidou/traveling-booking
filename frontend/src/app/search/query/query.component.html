@@ -31,7 +31,7 @@
 </div>
 <div class="container-fluid d-flex flex-column align-items-center justify-content-between py-4">
     @for (item of places; track $index) {
-    <div class="row item container-fluid py-2">
+    <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2">
         <div class="col-lg-4">
             <img style="height: 250px;" src="{{item.image}}" alt="">
         </div>

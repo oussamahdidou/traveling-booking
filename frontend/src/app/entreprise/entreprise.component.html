@@ -1,7 +1,8 @@
+@if(place){
 <div class="container gard-img mb-5">
     <div class="title-container d-flex justify-content-center align-items-center">
         <div class="title px-5 py-5">
-            <h3 class="m-0">Place Title</h3>
+            <h3 class="m-0">{{place.name}}</h3>
         </div>
     </div>
     <img src="https://assets.kerzner.com/api/public/content/22a13cd86bef48b28e9ff17642419a6c?v=abeba10a&t=w2880" alt="">
@@ -10,13 +11,10 @@
 <div class="container-fluid row">
     <div class="col-lg-8 p-3 py-5 d-flex flex-column gap-3 ">
         <div class="info-container py-4 px-4 mt-5">
-            <h3 class="m-0 info-title">Place Title</h3>
-            <h4 class="m-0 text-secondary">Place Adress</h4>
+            <h3 class="m-0 info-title">{{place.name}}</h3>
+            <h4 class="m-0 text-secondary">{{place.adress}}</h4>
             <p class="text-secondary bio">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dolorum iste, ipsa,
-                asperiores id laboriosam accusamus nostrum tempore quos rerum vel eaque perferendis architecto impedit,
-                animi a cupiditate veritatis. Accusamus pariatur error ratione animi necessitatibus modi porro
-                reiciendis quibusdam.
+                {{place.bio}}
             </p>
             <p class="bio m-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -169,3 +167,4 @@
         </div>
     </div>
 </div>
+}
