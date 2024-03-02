@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
 
 import '@maptiler/sdk/dist/maptiler-sdk.css';
@@ -6,14 +7,16 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: Map | undefined;
   marker: Marker | undefined;
+  constructor(private router: Router) {
 
+  }
   @ViewChild('map')
   private mapContainer!: ElementRef<HTMLElement>;
 
@@ -42,6 +45,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.marker) {
         this.marker.setLngLat(e.lngLat);
         console.log(e.lngLat);
+        this.router.navigate([`/search/location/${e.lngLat.lat}/${e.lngLat.lng}`])
       }
     });
   }

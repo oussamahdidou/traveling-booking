@@ -21,5 +21,11 @@ export class SearchService {
   PlaceById(id: number): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/' + id);
   }
+  GetCountries(): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Ville');
+  }
+  GetCities(id: number): Observable<any> {
+    return this.http.get("http://localhost:5163/api/Ville/" + id);
+  }
 
 }

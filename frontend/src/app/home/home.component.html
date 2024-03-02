@@ -29,22 +29,28 @@
         you search also using this fields
     </h5>
     <div class="d-flex justify-content-center align-items-center">
-        <select class="px-3 py-2 mx-3" name="" id="">
-            <option value="">Country</option>
-            <option value="">Country</option>
-            <option value="">Country</option>
-            <option value="">Country</option>
-            <option value="">Country</option>
+        <select (change)="getcity($event)" class="px-3 py-2 mx-3" name="" id="">
+            <option value="0">Country</option>
+            @for (item of countries; track $index) {
+            <option value="{{item.id}}">{{item.name}}</option>
+
+            }
         </select>
-        <select class="px-3 py-2 mx-3" name="" id="">
-            <option value="">City</option>
-            <option value="">City</option>
-            <option value="">City</option>
-            <option value="">City</option>
-            <option value="">City</option>
+        <select [(ngModel)]="city" class="px-3 py-2 mx-3" name="" id="">
+            <option value="0" selected>City</option>
+            @for (item of cities; track $index) {
+            <option value="{{item.id}}">{{item.name}}</option>
+            }
         </select>
-        <a href="" class="px-3 py-2 mx-3 register">Search</a>
-        <a href="" class="px-3 py-2 mx-3 register">
+        @if (city>0) {
+        <button [routerLink]="['/search/city/'+city]" class="px-3 py-2 mx-3 register">Search</button>
+
+        }
+        @else {
+        <button class="px-3 py-2 mx-3 register">Search</button>
+
+        }
+        <a href="/search/map" class="px-3 py-2 mx-3 register">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
