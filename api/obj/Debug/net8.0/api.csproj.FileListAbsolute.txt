@@ -148,6 +148,7 @@ C:\Users\ASUS\Downloads\accounting\api\bin\Debug\net8.0\Microsoft.Extensions.Ide
 C:\Users\ASUS\Downloads\accounting\api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\appsettings.json
+C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\api.staticwebassets.runtime.json
 C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\api.exe
 C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\api.deps.json
 C:\Users\ASUS\Downloads\check\traveling-booking\api\bin\Debug\net8.0\api.runtimeconfig.json

@@ -97,6 +97,7 @@ builder.Services.AddScoped<IEntrepriseRepository, EntrepriseRepository>();
 builder.Services.AddScoped<ICountriesCities, CountriesCities>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ISocialRepository, SocialRepository>();
+builder.Services.AddScoped<IAdsRepository, AdsRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -105,7 +106,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseCors("AllowOrigin");
 app.UseAuthentication();
