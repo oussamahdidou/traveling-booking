@@ -11,4 +11,14 @@ export class SearchService {
   search(query: string): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/Search/' + query);
   }
+  PlacesByCity(id: number): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/Ville/' + id);
+  }
+  PlacesByQuery(query: string): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise?Search=' + query);
+  }
+  PlacesById(id: number): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/' + id);
+  }
+
 }
