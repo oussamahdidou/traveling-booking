@@ -1,14 +1,34 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../../services/search.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-query',
   standalone: true,
-  imports: [CommonModule],
+  providers: [SearchService],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   templateUrl: './query.component.html',
   styleUrl: './query.component.css'
 })
-export class QueryComponent {
+export class QueryComponent implements OnInit {
+  places: any[] = [];
+  query!: string;
+  constructor(private route: ActivatedRoute, private searchService: SearchService) { }
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.query = params['query'];
+      this.searchService.PlacesByQuery(this.query).subscribe(
+        response => {
+          this.places = response;
+          console.log(this.places);
+        },
+        error => {
+          console.log(error)
+        });
+    });
+  }
   movetonext() {
     if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;

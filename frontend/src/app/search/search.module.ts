@@ -13,7 +13,7 @@ const routes: Routes = [
 
       { path: 'city/:id', component: CityComponent },
       { path: 'location/:latitude/:longitude', component: LocationComponent },
-      { path: 'search/:query', component: QueryComponent },
+      { path: 'query/:query', component: QueryComponent },
       { path: 'map', component: MapComponent }
     ],
   },

@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="container d-flex justify-content-between align-items-center py-5">
-    <h2 class="fw-bold m-0">4,915 results for “.net”</h2>
+    <h2 class="fw-bold m-0">4,915 results for “{{query}}”</h2>
     <select name="" id="" class="p-3">
 
         <option value="">by name</option>
@@ -30,17 +30,16 @@
     </select>
 </div>
 <div class="container-fluid d-flex flex-column align-items-center justify-content-between py-4">
+    @for (item of places; track $index) {
     <div class="row item container-fluid py-2">
         <div class="col-lg-4">
-            <img src="http://via.placeholder.com/640x360" alt="">
+            <img style="height: 250px;" src="{{item.image}}" alt="">
         </div>
         <div class="col-lg-8 pt-4">
-            <h4>Hotel Name</h4>
-            <h5 class="text-secondary">PlaceAdress</h5>
+            <h4>{{item.name}}</h4>
+            <h5 class="text-secondary">{{item.adress}}</h5>
             <h6 class="text-secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, reprehenderit deserunt earum libero
-                dolores sequi numquam aut voluptates quis nihil ab iure rem dignissimos labore hic officia obcaecati
-                voluptatum ullam vero nostrum adipisci exercitationem itaque. Asperiores dolor error magnam a?
+                {{item.bio}}
             </h6>
             <div class="d-flex align-items-center">
                 <p class="fw-bold m-0 me-2">4.5/5</p>
@@ -60,95 +59,5 @@
 
         </div>
     </div>
-    <div class="row item container-fluid py-2">
-        <div class="col-lg-4">
-            <img src="http://via.placeholder.com/640x360" alt="">
-        </div>
-        <div class="col-lg-8 pt-4">
-            <h4>Hotel Name</h4>
-            <h5 class="text-secondary">PlaceAdress</h5>
-            <h6 class="text-secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, reprehenderit deserunt earum libero
-                dolores sequi numquam aut voluptates quis nihil ab iure rem dignissimos labore hic officia obcaecati
-                voluptatum ullam vero nostrum adipisci exercitationem itaque. Asperiores dolor error magnam a?
-            </h6>
-            <div class="d-flex align-items-center">
-                <p class="fw-bold m-0 me-2">4.5/5</p>
-                <div class="rating">
-                    <input value="5" name="rating" id="star5" type="radio">
-                    <label for="star5"></label>
-                    <input value="4" name="rating" id="star4" type="radio">
-                    <label for="star4"></label>
-                    <input value="3" name="rating" id="star3" type="radio">
-                    <label for="star3"></label>
-                    <input value="2" name="rating" id="star2" type="radio">
-                    <label for="star2"></label>
-                    <input value="1" name="rating" id="star1" type="radio">
-                    <label for="star1"></label>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row item container-fluid py-2">
-        <div class="col-lg-4">
-            <img src="http://via.placeholder.com/640x360" alt="">
-        </div>
-        <div class="col-lg-8 pt-4">
-            <h4>Hotel Name</h4>
-            <h5 class="text-secondary">PlaceAdress</h5>
-            <h6 class="text-secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, reprehenderit deserunt earum libero
-                dolores sequi numquam aut voluptates quis nihil ab iure rem dignissimos labore hic officia obcaecati
-                voluptatum ullam vero nostrum adipisci exercitationem itaque. Asperiores dolor error magnam a?
-            </h6>
-            <div class="d-flex align-items-center">
-                <p class="fw-bold m-0 me-2">4.5/5</p>
-                <div class="rating">
-                    <input value="5" name="rating" id="star5" type="radio">
-                    <label for="star5"></label>
-                    <input value="4" name="rating" id="star4" type="radio">
-                    <label for="star4"></label>
-                    <input value="3" name="rating" id="star3" type="radio">
-                    <label for="star3"></label>
-                    <input value="2" name="rating" id="star2" type="radio">
-                    <label for="star2"></label>
-                    <input value="1" name="rating" id="star1" type="radio">
-                    <label for="star1"></label>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row item container-fluid py-2">
-        <div class="col-lg-4">
-            <img src="http://via.placeholder.com/640x360" alt="">
-        </div>
-        <div class="col-lg-8 pt-4">
-            <h4>Hotel Name</h4>
-            <h5 class="text-secondary">PlaceAdress</h5>
-            <h6 class="text-secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, reprehenderit deserunt earum libero
-                dolores sequi numquam aut voluptates quis nihil ab iure rem dignissimos labore hic officia obcaecati
-                voluptatum ullam vero nostrum adipisci exercitationem itaque. Asperiores dolor error magnam a?
-            </h6>
-            <div class="d-flex align-items-center">
-                <p class="fw-bold m-0 me-2">4.5/5</p>
-                <div class="rating">
-                    <input value="5" name="rating" id="star5" type="radio">
-                    <label for="star5"></label>
-                    <input value="4" name="rating" id="star4" type="radio">
-                    <label for="star4"></label>
-                    <input value="3" name="rating" id="star3" type="radio">
-                    <label for="star3"></label>
-                    <input value="2" name="rating" id="star2" type="radio">
-                    <label for="star2"></label>
-                    <input value="1" name="rating" id="star1" type="radio">
-                    <label for="star1"></label>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
+    }
 </div>
