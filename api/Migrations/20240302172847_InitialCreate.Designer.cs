@@ -12,7 +12,7 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(apiDbContext))]
-    [Migration("20240225195129_InitialCreate")]
+    [Migration("20240302172847_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d89ab81-abf8-42ae-a921-6e3626191555",
+                            Id = "eca48876-dace-46c1-8707-9a1e6d73eaf4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "34440f4c-c5dc-40a5-8425-b3d6c1c7058f",
+                            Id = "c5b04242-863c-45b6-a851-89b730947c45",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -180,10 +180,16 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("EntrepriseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Images")
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -275,9 +281,6 @@ namespace api.Migrations
                     b.Property<int?>("EntrepriseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
@@ -323,6 +326,9 @@ namespace api.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
@@ -350,28 +356,6 @@ namespace api.Migrations
                     b.ToTable("Entreprises");
                 });
 
-            modelBuilder.Entity("api.Model.License", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("Key")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("licenses");
-                });
-
             modelBuilder.Entity("api.Model.Rating", b =>
                 {
                     b.Property<string>("AppUserId")
@@ -391,24 +375,6 @@ namespace api.Migrations
                     b.HasIndex("EntrepriseId");
 
                     b.ToTable("Ratings");
-                });
-
-            modelBuilder.Entity("api.Model.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("api.Model.Ville", b =>
@@ -532,17 +498,6 @@ namespace api.Migrations
                     b.Navigation("Ville");
                 });
 
-            modelBuilder.Entity("api.Model.License", b =>
-                {
-                    b.HasOne("api.Model.User", "User")
-                        .WithMany("Licences")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("api.Model.Rating", b =>
                 {
                     b.HasOne("api.Model.AppUser", "AppUser")
@@ -592,11 +547,6 @@ namespace api.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Ratings");
-                });
-
-            modelBuilder.Entity("api.Model.User", b =>
-                {
-                    b.Navigation("Licences");
                 });
 
             modelBuilder.Entity("api.Model.Ville", b =>

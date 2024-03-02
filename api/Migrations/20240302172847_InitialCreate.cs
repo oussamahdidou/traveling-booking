@@ -66,19 +66,6 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -207,26 +194,6 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "licenses",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_licenses", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_licenses_users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Entreprises",
                 columns: table => new
                 {
@@ -239,6 +206,7 @@ namespace api.Migrations
                     Supported = table.Column<bool>(type: "bit", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     Longitude = table.Column<double>(type: "float", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VilleId = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -264,7 +232,9 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Images = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EntrepriseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -287,8 +257,7 @@ namespace api.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    EntrepriseId = table.Column<int>(type: "int", nullable: true),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    EntrepriseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -336,8 +305,8 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "34440f4c-c5dc-40a5-8425-b3d6c1c7058f", null, "User", "User" },
-                    { "9d89ab81-abf8-42ae-a921-6e3626191555", null, "Admin", "ADMIN" }
+                    { "c5b04242-863c-45b6-a851-89b730947c45", null, "User", "User" },
+                    { "eca48876-dace-46c1-8707-9a1e6d73eaf4", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -405,11 +374,6 @@ namespace api.Migrations
                 column: "VilleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_licenses_UserId",
-                table: "licenses",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Ratings_EntrepriseId",
                 table: "Ratings",
                 column: "EntrepriseId");
@@ -445,16 +409,10 @@ namespace api.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "licenses");
-
-            migrationBuilder.DropTable(
                 name: "Ratings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "users");
 
             migrationBuilder.DropTable(
                 name: "Entreprises");

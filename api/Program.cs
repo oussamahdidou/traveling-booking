@@ -92,8 +92,7 @@ builder.Services.AddCors(options =>
                     .AllowAnyHeader()
                     .AllowAnyMethod());
 });
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ILicenseRepository, LicenseRepository>();
+
 builder.Services.AddScoped<IEntrepriseRepository, EntrepriseRepository>();
 builder.Services.AddScoped<ICountriesCities, CountriesCities>();
 builder.Services.AddScoped<ITokenService, TokenService>();

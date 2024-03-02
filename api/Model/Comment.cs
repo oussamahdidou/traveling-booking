@@ -16,6 +16,6 @@ namespace api.Model
         public AppUser? AppUser { get; set; }
         public int? EntrepriseId { get; set; }
         public Entreprise? Entreprise { get; set; }
-        public string? Image { get; set; }
+
     }
 }

@@ -17,6 +17,7 @@ namespace api.Model
         public bool? Supported { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string? Image { get; set; }
         public int VilleId { get; set; }
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }

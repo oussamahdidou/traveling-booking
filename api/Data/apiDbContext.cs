@@ -22,8 +22,7 @@ namespace api.Data
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Ads> Ads { get; set; }
-        public DbSet<User> users { get; set; }
-        public DbSet<License> licenses { get; set; }
+
         // public DbSet<Doctor> doctors { get; set; }
         // public DbSet<LicenseDoctor> licenseDoctors { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
