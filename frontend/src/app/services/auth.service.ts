@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
@@ -10,13 +10,14 @@ export class AuthService {
   $isloggedin = this._$isLoggedin.asObservable();
   jwt: string = ''
   token: any;
+  headers: any | undefined;
   constructor(private http: HttpClient) {
     if (localStorage.getItem('token')) {
       this._$isLoggedin.next(true);
       this.jwt = localStorage.getItem("token") || '';
       console.log(this.jwt)
       this.token = this.getUser(this.jwt);
-
+      this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.jwt);
     }
     else {
       this._$isLoggedin.next(false);
