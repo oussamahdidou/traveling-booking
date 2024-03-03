@@ -60,7 +60,7 @@ namespace api.Repository
             }
 
 
-            List<Entreprise> entreprisesresult = await entreprises.ToListAsync();
+            List<Entreprise> entreprisesresult = await entreprises.Include(c => c.Ratings).ToListAsync();
 
 
             return entreprisesresult;
@@ -79,28 +79,47 @@ namespace api.Repository
                       v.Latitude >= minLatitude &&
                       v.Latitude <= maxLatitude &&
                       v.Longitude >= minLongitude &&
-                      v.Longitude <= maxLongitude).ToListAsync();
+                      v.Longitude <= maxLongitude).Include(c => c.Ratings).ToListAsync();
             return entreprises;
         }
 
         public async Task<List<Entreprise>> GetEntreprisesByVille(int id)
         {
-            List<Entreprise> entreprises = await apiDbContext.Entreprises.Where(x => x.VilleId == id).ToListAsync();
+            List<Entreprise> entreprises = await apiDbContext.Entreprises.Where(x => x.VilleId == id).Include(c => c.Ratings).ToListAsync();
             return entreprises;
         }
 
         public async Task<TopFiveTypeDTo> GetTopFiveBytypeyEntreprises()
         {
-            List<Entreprise> hotels = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Hotel")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
-            List<Entreprise> restaurant = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Restaurant")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
-            List<Entreprise> activities = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Activity")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
+            List<Entreprise> hotels = await apiDbContext.Entreprises
+                .Include(e => e.Ratings) // Include Ratings navigation property
+                .Where(x => x.Type.Equals("Hotel"))
+                .OrderByDescending(x => x.Supported)
+                .Take(4)
+                .ToListAsync();
+
+            List<Entreprise> restaurants = await apiDbContext.Entreprises
+                .Include(e => e.Ratings) // Include Ratings navigation property
+                .Where(x => x.Type.Equals("Restaurant"))
+                .OrderByDescending(x => x.Supported)
+                .Take(4)
+                .ToListAsync();
+
+            List<Entreprise> activities = await apiDbContext.Entreprises
+                .Include(e => e.Ratings) // Include Ratings navigation property
+                .Where(x => x.Type.Equals("Activity"))
+                .OrderByDescending(x => x.Supported)
+                .Take(4)
+                .ToListAsync();
+
             return new TopFiveTypeDTo()
             {
                 Hotels = hotels,
-                Restaurant = restaurant,
+                Restaurant = restaurants,
                 Activities = activities
             };
         }
+
 
         public async Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery)
         {

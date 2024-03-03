@@ -19,13 +19,23 @@ export class HomeComponent implements OnInit {
   cities: any[] = [];
   city: number = 0;
   top: any[] = [];
-  toptype: any;
+  hotels: any[] = [];
+  restaurants: any[] = []
+  activities: any[] = []
   constructor(private searchservice: SearchService) {
 
 
   }
   ngOnInit(): void {
-    this.searchservice.TopFiveeatchtype().subscribe(reposnse => { this.toptype = reposnse; })
+    this.searchservice.TopFiveeatchtype().subscribe(reposnse => {
+      this.hotels = reposnse.hotels;
+      this.restaurants = reposnse.restaurant;
+      this.activities = reposnse.activities;
+      console.log(this.hotels)
+      console.log(this.activities);
+      console.log(this.activities)
+
+    })
     this.searchservice.GetCountries().subscribe(
       response => {
         this.countries = response;
@@ -65,6 +75,12 @@ export class HomeComponent implements OnInit {
 
   }
   selectedIndex: number = 0;
-
+  calculateAverageRate(place: any): number {
+    if (0 == place.ratings.length) {
+      return 0;
+    }
+    const totalRate = place.ratings.reduce((acc, item) => acc + item.rate, 0);
+    return totalRate / place.ratings.length;
+  }
 
 }

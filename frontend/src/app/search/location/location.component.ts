@@ -45,6 +45,12 @@ export class LocationComponent implements OnInit {
 
   }
   selectedIndex: number = 0;
-
+  calculateAverageRate(place: any): number {
+    if (0 == place.ratings.length) {
+      return 0;
+    }
+    const totalRate = place.ratings.reduce((acc, item) => acc + item.rate, 0);
+    return totalRate / place.ratings.length;
+  }
 
 }

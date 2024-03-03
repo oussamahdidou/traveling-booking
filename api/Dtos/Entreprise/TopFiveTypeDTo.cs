@@ -8,9 +8,9 @@ namespace api.Dtos.Entreprise
 {
     public class TopFiveTypeDTo
     {
-        public List<Model.Entreprise> Hotels { get; set; }
-        public List<Model.Entreprise> Restaurant { get; set; }
-        public List<Model.Entreprise> Activities { get; set; }
+        public List<Model.Entreprise> Hotels { get; set; } = new List<Model.Entreprise>();
+        public List<Model.Entreprise> Restaurant { get; set; } = new List<Model.Entreprise>();
+        public List<Model.Entreprise> Activities { get; set; } = new List<Model.Entreprise>();
 
     }
 }
