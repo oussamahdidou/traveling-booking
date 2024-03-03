@@ -27,5 +27,13 @@ export class SearchService {
   GetCities(id: number): Observable<any> {
     return this.http.get("http://localhost:5163/api/Ville/" + id);
   }
-
+  TopPlacesByCity(id: number): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/Top?CityId=' + id);
+  }
+  TopPlacesByQuery(query: string): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/Top?Query=' + query);
+  }
+  TopPlaces(): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/Top');
+  }
 }
