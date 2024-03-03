@@ -19,12 +19,13 @@ export class HomeComponent implements OnInit {
   cities: any[] = [];
   city: number = 0;
   top: any[] = [];
+  toptype: any;
   constructor(private searchservice: SearchService) {
 
 
   }
   ngOnInit(): void {
-
+    this.searchservice.TopFiveeatchtype().subscribe(reposnse => { this.toptype = reposnse; })
     this.searchservice.GetCountries().subscribe(
       response => {
         this.countries = response;

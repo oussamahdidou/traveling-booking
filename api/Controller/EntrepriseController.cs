@@ -81,6 +81,12 @@ namespace api.Controller
             List<Entreprise> entreprises = await entrepriseRepository.GetEntreprisesByVille(id);
             return Ok(entreprises);
         }
+        [HttpGet("top/type")]
+        public async Task<IActionResult> GetTopFiveBytype()
+        {
+            TopFiveTypeDTo topFiveTypeDTo = await entrepriseRepository.GetTopFiveBytypeyEntreprises();
+            return Ok(topFiveTypeDTo);
+        }
 
     }
 }

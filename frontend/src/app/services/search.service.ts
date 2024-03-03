@@ -42,4 +42,8 @@ export class SearchService {
   TopPlaces(): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/Top');
   }
+  TopFiveeatchtype(): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/top/type');
+
+  }
 }

@@ -89,10 +89,23 @@ namespace api.Repository
             return entreprises;
         }
 
+        public async Task<TopFiveTypeDTo> GetTopFiveBytypeyEntreprises()
+        {
+            List<Entreprise> hotels = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Hotel")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
+            List<Entreprise> restaurant = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Restaurant")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
+            List<Entreprise> activities = await apiDbContext.Entreprises.Where(x => x.Type.Equals("Activity")).OrderByDescending(x => x.Supported).Take(4).ToListAsync();
+            return new TopFiveTypeDTo()
+            {
+                Hotels = hotels,
+                Restaurant = restaurant,
+                Activities = activities
+            };
+        }
+
         public async Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery)
         {
             var promoted = apiDbContext.Entreprises.AsQueryable();
-            if (topFiveQuery.CityId != 1)
+            if (topFiveQuery.CityId != 0)
             {
                 promoted = promoted.Where(x => x.VilleId == topFiveQuery.CityId);
             }
@@ -127,11 +140,11 @@ namespace api.Repository
             List<Entreprise> entreprises = await apiDbContext.Entreprises.ToListAsync();
             entreprises = entreprises.Where(x => x.Adress.HasCommonPart(query) ||
                  x.Name.HasCommonPart(query) ||
-                 x.Bio.HasCommonPart(query)).ToList();
+                 x.Bio.HasCommonPart(query)).Take(5).ToList();
 
 
             List<Ville> villes = await apiDbContext.Villes.ToListAsync();
-            villes = villes.Where(x => x.Name.HasCommonPart(query)).ToList();
+            villes = villes.Where(x => x.Name.HasCommonPart(query)).Take(5).ToList();
             return new SearchDto()
             {
                 Entreprises = entreprises,
