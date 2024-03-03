@@ -5,7 +5,7 @@
   </a>
   <!-- Search bar -->
   <div class="search-container d-flex p-1 ps-3">
-    <button>
+    <button [routerLink]="['/search/query/'+search]">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
         viewBox="0 0 16 16">
         <path
@@ -17,7 +17,7 @@
     <div class="search-items d-flex flex-column py-3 ">
       @for (item of entreprises; track $index)
       {
-      <div class="search-item d-flex justify-content-between align-items-center p-3">
+      <div [routerLink]="['/place/'+item.id]" class="search-item d-flex justify-content-between align-items-center p-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
           viewBox="0 0 16 16">
           <path
@@ -28,7 +28,8 @@
       }
       @for (item of villes; track $index)
       {
-      <div class="search-item d-flex justify-content-between align-items-center p-3">
+      <div [routerLink]="['/search/city/'+item.id]"
+        class="search-item d-flex justify-content-between align-items-center p-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
           viewBox="0 0 16 16">
           <path
