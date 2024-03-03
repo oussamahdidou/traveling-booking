@@ -53,6 +53,12 @@ namespace api.Controller
             SearchDto searchDto = await entrepriseRepository.Search(query);
             return Ok(searchDto);
         }
+        [HttpGet("{lat:double}/{lng:double}")]
+        public async Task<IActionResult> GetEntreprisesByLoaction([FromRoute] double lat, [FromRoute] double lng)
+        {
+            List<Entreprise> entreprises = await entrepriseRepository.GetEntreprisesBYLocation(lat, lng);
+            return Ok(entreprises);
+        }
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateEntrepriseDto updateEntrepriseDto)
         {

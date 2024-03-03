@@ -1,2 +1,4 @@
 api/obj/
 api/bin/
+
+.fake

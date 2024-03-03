@@ -1,3 +1,4 @@
+@if (top.length>0) {
 <div class="slider-part justify-content-center align-items-center mt-3 position-relative">
     <div class="leftright d-flex justify-content-between align-items-center px-3">
         <svg style="cursor: pointer;" (click)="movetonext()" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -13,18 +14,16 @@
     </div>
     <div class="container-fluid slide-container d-flex ">
 
-        @for (item of images; track $index) {
-        <div class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
-        'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
-        'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
-        ">
-            <img [src]="item" alt="" class="slider-img">
+        @for (item of top; track $index) {
+        <div [routerLink]="['/place/'+item.id]" class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
+            'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
+            'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
+            ">
+            <img [src]="item.image" alt="" class="slider-img">
             <div class="slider-caption p-5">
-                <h3>Dubai Hotel</h3>
+                <h3>{{item.name}}</h3>
                 <h6>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et labore veritatis soluta eum vel. Non,
-                    alias, qui est autem architecto eos nostrum sapiente ratione quo soluta voluptatum maxime tempore
-                    repellat ea at facere repudiandae eligendi molestias. Aliquid commodi facilis modi?
+                    {{item.bio}}
                 </h6>
             </div>
         </div>
@@ -32,6 +31,7 @@
         }
     </div>
 </div>
+}
 <div class="container d-flex justify-content-end align-items-center py-5">
     <select name="" id="" class="p-3">
         <option value="">by name</option>
@@ -41,17 +41,17 @@
     </select>
 </div>
 <div class="container-fluid d-flex flex-column align-items-center justify-content-between py-4">
-    <div class="row item container-fluid py-2">
+    @if (places.length> 0) {
+    @for (item of places; track $index) {
+    <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2">
         <div class="col-lg-4">
-            <img style="height: 250px;" src="http://via.placeholder.com/640x360" alt="">
+            <img style="height: 250px;" src="{{item.image}}" alt="">
         </div>
         <div class="col-lg-8 pt-4">
-            <h4>Hotel Name</h4>
-            <h5 class="text-secondary">PlaceAdress</h5>
+            <h4>{{item.name}}</h4>
+            <h5 class="text-secondary">{{item.adress}}</h5>
             <h6 class="text-secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, reprehenderit deserunt earum libero
-                dolores sequi numquam aut voluptates quis nihil ab iure rem dignissimos labore hic officia obcaecati
-                voluptatum ullam vero nostrum adipisci exercitationem itaque. Asperiores dolor error magnam a?
+                {{item.bio}}
             </h6>
             <div class="d-flex align-items-center">
                 <p class="fw-bold m-0 me-2">4.5/5</p>
@@ -71,6 +71,13 @@
 
         </div>
     </div>
+    }
+    }
+    @else {
+    <div class="notfound py-5 mb-5">
+        <h5 class="text-center text-secondary py-5 mb-5"> No Places Found</h5>
 
+    </div>
+    }
 
 </div>

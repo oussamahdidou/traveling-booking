@@ -21,6 +21,9 @@ export class SearchService {
   PlaceById(id: number): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/' + id);
   }
+  PlacesBylocation(lat: number, lng: number): Observable<any> {
+    return this.http.get(`http://localhost:5163/api/Entreprise/${lat}/${lng}`);
+  }
   GetCountries(): Observable<any> {
     return this.http.get('http://localhost:5163/api/Ville');
   }
@@ -32,6 +35,9 @@ export class SearchService {
   }
   TopPlacesByQuery(query: string): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/Top?Query=' + query);
+  }
+  TopPlacesByLocation(lat: number, lng: number): Observable<any> {
+    return this.http.get(`http://localhost:5163/api/Entreprise/Top?Lat=${lat}&Lng=${lng}`)
   }
   TopPlaces(): Observable<any> {
     return this.http.get('http://localhost:5163/api/Entreprise/Top');

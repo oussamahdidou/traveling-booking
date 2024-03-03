@@ -17,6 +17,7 @@ namespace api.interfaces
         Task<SearchDto> Search(string SearchQuery);
         Task<Entreprise> CreateEntrepriseAsync(CreateEntreprise createEntreprise);
         Task<List<Entreprise>> GetEntreprisesByVille(int id);
+        Task<List<Entreprise>> GetEntreprisesBYLocation(double lat, double lng);
         Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery);
     }
 }

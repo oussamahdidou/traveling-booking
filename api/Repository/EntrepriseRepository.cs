@@ -66,6 +66,23 @@ namespace api.Repository
             return entreprisesresult;
         }
 
+        public async Task<List<Entreprise>> GetEntreprisesBYLocation(double lat, double lng)
+        {
+            double radiusInDegrees = 50 / 111.12; // Approximate conversion: 1 km = 1/111.12 degrees
+
+            // Calculate bounds
+            double minLatitude = lat - radiusInDegrees;
+            double maxLatitude = lat + radiusInDegrees;
+            double minLongitude = lng - radiusInDegrees;
+            double maxLongitude = lng + radiusInDegrees;
+            List<Entreprise> entreprises = await apiDbContext.Entreprises.Where(v =>
+                      v.Latitude >= minLatitude &&
+                      v.Latitude <= maxLatitude &&
+                      v.Longitude >= minLongitude &&
+                      v.Longitude <= maxLongitude).ToListAsync();
+            return entreprises;
+        }
+
         public async Task<List<Entreprise>> GetEntreprisesByVille(int id)
         {
             List<Entreprise> entreprises = await apiDbContext.Entreprises.Where(x => x.VilleId == id).ToListAsync();
@@ -75,7 +92,7 @@ namespace api.Repository
         public async Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery)
         {
             var promoted = apiDbContext.Entreprises.AsQueryable();
-            if (topFiveQuery.CityId == 1)
+            if (topFiveQuery.CityId != 1)
             {
                 promoted = promoted.Where(x => x.VilleId == topFiveQuery.CityId);
             }
@@ -86,10 +103,22 @@ namespace api.Repository
                 x.Adress.ToLower().Contains(topFiveQuery.Query.ToLower())
                 );
             }
-            // if (topFiveQuery.Lng != 0.0 && topFiveQuery.Lat != 0.0)
-            // {
+            if (topFiveQuery.Lng != 0.0 && topFiveQuery.Lat != 0.0)
+            {
+                double radiusInDegrees = 50 / 111.12; // Approximate conversion: 1 km = 1/111.12 degrees
 
-            // }
+                // Calculate bounds
+                double minLatitude = topFiveQuery.Lat - radiusInDegrees;
+                double maxLatitude = topFiveQuery.Lat + radiusInDegrees;
+                double minLongitude = topFiveQuery.Lng - radiusInDegrees;
+                double maxLongitude = topFiveQuery.Lng + radiusInDegrees;
+                promoted = promoted.Where(v =>
+                       v.Latitude >= minLatitude &&
+                       v.Latitude <= maxLatitude &&
+                       v.Longitude >= minLongitude &&
+                       v.Longitude <= maxLongitude);
+
+            }
             return await promoted.OrderByDescending(x => x.Supported).Take(5).ToListAsync();
         }
 
