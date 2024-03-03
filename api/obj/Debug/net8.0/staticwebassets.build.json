@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TAkJULbLFnVIlzhsttzHYk+TrzBQ2Jx0r4JvcZNhsf4=",
+  "Hash": "o/279UJz/yIMa5q5oy+Kj1J7PWyIkBUugbjm3t23V2U=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
@@ -15,5 +15,25 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ASUS\\Downloads\\check\\traveling-booking\\api\\wwwroot\\uploads\\7b985b51-1352-48cb-a699-b903d3b1871e_Screenshot 2024-03-01 191207.png",
+      "SourceId": "api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\Downloads\\check\\traveling-booking\\api\\wwwroot\\",
+      "BasePath": "_content/api",
+      "RelativePath": "uploads/7b985b51-1352-48cb-a699-b903d3b1871e_Screenshot 2024-03-01 191207.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\7b985b51-1352-48cb-a699-b903d3b1871e_Screenshot 2024-03-01 191207.png"
+    }
+  ]
 }

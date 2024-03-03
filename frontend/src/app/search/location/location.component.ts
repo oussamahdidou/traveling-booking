@@ -18,6 +18,15 @@ export class LocationComponent {
     }
 
   }
+  movetoback() {
+    if (this.selectedIndex === 0) {
+      this.selectedIndex = this.images.length - 1;
+    }
+    else {
+      this.selectedIndex--;
+    }
+
+  }
   selectedIndex: number = 0;
   images: string[] = [
     "https://assets.kerzner.com/api/public/content/22a13cd86bef48b28e9ff17642419a6c?v=abeba10a&t=w2880",

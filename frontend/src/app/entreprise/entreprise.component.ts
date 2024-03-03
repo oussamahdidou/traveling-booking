@@ -57,6 +57,9 @@ export class EntrepriseComponent implements OnInit {
 
   }
   calculateAverageRate(): number {
+    if (0 == this.place.ratings.length) {
+      return 0;
+    }
     const totalRate = this.place.ratings.reduce((acc, item) => acc + item.rate, 0);
     return totalRate / this.place.ratings.length;
   }

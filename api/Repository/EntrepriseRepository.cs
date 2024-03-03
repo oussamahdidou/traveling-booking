@@ -11,6 +11,7 @@ using api.interfaces;
 using api.Model;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace api.Repository
 {
@@ -69,6 +70,27 @@ namespace api.Repository
         {
             List<Entreprise> entreprises = await apiDbContext.Entreprises.Where(x => x.VilleId == id).ToListAsync();
             return entreprises;
+        }
+
+        public async Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery)
+        {
+            var promoted = apiDbContext.Entreprises.AsQueryable();
+            if (topFiveQuery.CityId == 1)
+            {
+                promoted = promoted.Where(x => x.VilleId == topFiveQuery.CityId);
+            }
+            if (!topFiveQuery.Query.IsNullOrEmpty())
+            {
+                promoted = promoted.Where(x => x.Name.ToLower().Contains(topFiveQuery.Query.ToLower()) ||
+                x.Bio.ToLower().Contains(topFiveQuery.Query.ToLower()) ||
+                x.Adress.ToLower().Contains(topFiveQuery.Query.ToLower())
+                );
+            }
+            // if (topFiveQuery.Lng != 0.0 && topFiveQuery.Lat != 0.0)
+            // {
+
+            // }
+            return await promoted.OrderByDescending(x => x.Supported).Take(5).ToListAsync();
         }
 
         public async Task<SearchDto> Search(string query)

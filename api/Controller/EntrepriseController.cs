@@ -31,6 +31,12 @@ namespace api.Controller
             var entreprises = await entrepriseRepository.GetEntreprisesAsync(query);
             return Ok(entreprises);
         }
+        [HttpGet("Top")]
+        public async Task<IActionResult> GetTopFive([FromQuery] TopFiveQuery topFiveQuery)
+        {
+            List<Entreprise> entreprises = await entrepriseRepository.GetTopFiveEntreprises(topFiveQuery);
+            return Ok(entreprises);
+        }
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetEntrepriseById([FromRoute] int id)
         {
