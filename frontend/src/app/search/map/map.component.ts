@@ -44,7 +44,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       // Update marker position to the clicked coordinates
       if (this.marker) {
         this.marker.setLngLat(e.lngLat);
-        console.log(e.lngLat);
         this.router.navigate([`/search/location/${e.lngLat.lat}/${e.lngLat.lng}`])
       }
     });

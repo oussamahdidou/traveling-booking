@@ -21,11 +21,11 @@
     "@maptiler/sdk": "^1.2.1",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
-    "ngx-slick": "^0.2.1",
-    "ngx-slick-carousel": "^17.0.0",
+    "ngx-skeleton-loader": "^9.0.0",
     "placeholder-loading": "^0.6.0",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.10.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

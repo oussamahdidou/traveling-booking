@@ -23,7 +23,6 @@ export class QueryComponent implements OnInit {
       this.searchService.PlacesByQuery(this.query).subscribe(
         response => {
           this.places = response;
-          console.log(this.places);
         },
         error => {
           console.log(error)

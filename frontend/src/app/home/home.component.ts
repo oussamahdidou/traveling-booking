@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SearchService } from '../services/search.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -10,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-home',
   standalone: true,
   providers: [SearchService],
-  imports: [SlickCarouselModule, CommonModule, HttpClientModule, RouterModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -31,9 +30,7 @@ export class HomeComponent implements OnInit {
       this.hotels = reposnse.hotels;
       this.restaurants = reposnse.restaurant;
       this.activities = reposnse.activities;
-      console.log(this.hotels)
-      console.log(this.activities);
-      console.log(this.activities)
+
 
     })
     this.searchservice.GetCountries().subscribe(

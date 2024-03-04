@@ -31,7 +31,6 @@ export class EntrepriseComponent implements OnInit {
         this.searchservice.PlaceById(this.itemId).subscribe(
           response => {
             this.place = response;
-            console.log(this.place.ratings)
           },
           error => {
             console.log(error)

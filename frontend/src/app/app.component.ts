@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, NavigationStart, Router, RouterModule, RouterOutlet } from '@angular/router';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './services/search.service';
@@ -10,7 +9,7 @@ import { SearchService } from './services/search.service';
   selector: 'app-root',
   standalone: true,
   providers: [AuthService, SearchService],
-  imports: [RouterModule, RouterOutlet, CommonModule, FormsModule, SlickCarouselModule, HttpClientModule],
+  imports: [RouterModule, RouterOutlet, CommonModule, FormsModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -41,7 +40,6 @@ export class AppComponent implements OnInit {
     if (this.search.length >= 3) {
       this.searchservice.search(this.search).subscribe(
         (data) => {
-          console.log("data", data);
           this.entreprises = data.entreprises
           this.villes = data.villes
         },

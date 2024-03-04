@@ -44,6 +44,7 @@
 </div>
 <div class="container-fluid d-flex flex-column align-items-center justify-content-between py-4">
     @for (item of places; track $index) {
+    @defer (on timer(3s)) {
     <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2" style="cursor: pointer;">
         <div class="col-lg-4">
             <img style="height: 250px;" src="{{item.image}}" alt="">
@@ -72,6 +73,44 @@
 
         </div>
     </div>
+    }
+    @placeholder {
+    <div class="col-12 col-sm-6" style="width: 100%; ">
+
+        <div class="ph-item">
+
+            <div class="ph-col-4">
+                <div style="height: 250px;" class="ph-picture"></div>
+
+            </div>
+            <div>
+                <div class="ph-row">
+                    <div class="ph-col-12"></div>
+                    <div class="ph-col-2"></div>
+                    <div class="ph-col-10 empty"></div>
+                    <div class="ph-col-8 big"></div>
+                    <div class="ph-col-4 big empty"></div>
+                    <div class="ph-col-12"></div>
+                    <div class="ph-col-2"></div>
+                    <div class="ph-col-10 empty"></div>
+                    <div class="ph-col-8 big"></div>
+                    <div class="ph-col-4 big empty"></div>
+                    <div class="ph-col-12"></div>
+                    <div class="ph-col-2"></div>
+                    <div class="ph-col-10 empty"></div>
+                    <div class="ph-col-8 big"></div>
+                    <div class="ph-col-4 big empty"></div>
+                    <div class="ph-col-12"></div>
+                    <div class="ph-col-2"></div>
+                    <div class="ph-col-10 empty"></div>
+                    <div class="ph-col-8 big"></div>
+                    <div class="ph-col-4 big empty"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    }
     }
 
 

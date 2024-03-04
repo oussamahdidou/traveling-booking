@@ -22,14 +22,12 @@ export class CityComponent implements OnInit {
       this.searchService.PlacesByCity(itemId).subscribe(
         response => {
           this.places = response;
-          console.log(this.places);
         },
         error => {
           console.log(error)
         });
       this.searchService.TopPlacesByCity(itemId).subscribe(response => {
         this.top = response;
-        console.log(response)
       })
 
     });

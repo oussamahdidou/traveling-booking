@@ -15,7 +15,6 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this._$isLoggedin.next(true);
       this.jwt = localStorage.getItem("token") || '';
-      console.log(this.jwt)
       this.token = this.getUser(this.jwt);
       this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.jwt);
     }
@@ -33,7 +32,6 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post('http://localhost:5163/api/Account/Login', { username, password }).pipe(
       tap(response => {
-        console.log('Data received:', response['token']);
 
         localStorage.setItem('token', response['token']);
         this._$isLoggedin.next(true);
