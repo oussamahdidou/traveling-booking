@@ -1,15 +1,19 @@
 <div class="slider-part justify-content-center align-items-center mt-3 position-relative">
     <div class="leftright d-flex justify-content-between align-items-center px-3">
-        <svg style="cursor: pointer;" (click)="movetonext()" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-            fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-            <path
-                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-        </svg>
-        <svg style="cursor: pointer;" (click)="movetoback()" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-            fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-            <path
-                d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-        </svg>
+        <button class="border-0 bg-white" (click)="movetonext()">
+            <svg style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>
+        </button>
+        <button class="border-0 bg-white" (click)="movetoback()">
+            <svg style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+            </svg>
+        </button>
     </div>
     <div class="container-fluid slide-container d-flex ">
 
@@ -40,7 +44,7 @@
 </div>
 <div class="container-fluid d-flex flex-column align-items-center justify-content-between py-4">
     @for (item of places; track $index) {
-    <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2">
+    <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2" style="cursor: pointer;">
         <div class="col-lg-4">
             <img style="height: 250px;" src="{{item.image}}" alt="">
         </div>
