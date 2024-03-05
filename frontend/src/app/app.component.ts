@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   showNavbar: boolean = true;
   villes: any[] = [];
   entreprises: any[] = [];
+  sidenave: boolean = false;
   constructor(private router: Router, public authservice: AuthService, private searchservice: SearchService) { }
 
   ngOnInit() {
@@ -48,6 +49,13 @@ export class AppComponent implements OnInit {
         }
       )
     }
+  }
+  showsearch: boolean = false;
+  _showsearch() {
+    this.showsearch = !this.showsearch;
+  }
+  showsidenav() {
+    this.sidenave = !this.sidenave;
   }
   title = 'travelnest';
   search: string = '';
