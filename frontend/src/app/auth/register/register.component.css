@@ -4,6 +4,8 @@
 }
 #user {
   background-image: url("../../../assets/img/HD-wallpaper-man-traveler-tourist-travel-road.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 a {
   color: white;

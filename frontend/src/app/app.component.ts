@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showNavbar = !['/auth/login', '/auth/register', '/search/map'].includes(this.router.url);
+        this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
       }
     });
   }

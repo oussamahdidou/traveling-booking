@@ -49,4 +49,33 @@ export class AuthService {
     );
 
   }
+  registeruser(username: string, EmailAddress: string, password: string): Observable<any> {
+    return this.http.post('http://localhost:5163/api/Account/Register/User', { username, EmailAddress, password }).pipe(
+      tap(response => {
+
+        localStorage.setItem('token', response['token']);
+        this._$isLoggedin.next(true);
+      },
+        error => {
+          console.log(error);
+        }
+      )
+    );
+
+  }
+  registeradmin(username: string, EmailAddress: string, password: string): Observable<any> {
+    return this.http.post('http://localhost:5163/api/Account/Register/admin', { username, EmailAddress, password }).pipe(
+      tap(response => {
+
+        localStorage.setItem('token', response['token']);
+        this._$isLoggedin.next(true);
+        this._$IsAdmin.next(true);
+      },
+        error => {
+          console.log(error);
+        }
+      )
+    );
+
+  }
 }
