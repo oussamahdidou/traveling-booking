@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Data;
 using api.Dtos.Entreprise;
 using api.Dtos.Search;
 using api.Extensions;
@@ -60,9 +61,14 @@ namespace api.Controller
             return Ok(entreprises);
         }
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateEntrepriseDto updateEntrepriseDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromForm] UpdateEntrepriseDto updateEntrepriseDto)
         {
-            return Ok();
+            Entreprise? entreprise = await entrepriseRepository.UpdateAsync(updateEntrepriseDto, id);
+            if (entreprise != null)
+            {
+                return Ok(entreprise);
+            }
+            return NotFound("something went wrong ...");
         }
         [HttpPost]
         [Authorize/*(Roles = "Admin")*/]
@@ -72,6 +78,8 @@ namespace api.Controller
             var user = await userManager.FindByNameAsync(username);
             createEntreprise.AppUserId = user.Id;
             Entreprise entreprise = await entrepriseRepository.CreateEntrepriseAsync(createEntreprise);
+            if (entreprise == null)
+                return NotFound("something went wrong ...");
             return Ok(entreprise);
 
         }

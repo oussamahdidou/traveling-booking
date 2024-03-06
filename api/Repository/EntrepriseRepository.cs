@@ -200,9 +200,57 @@ namespace api.Repository
             };
         }
 
-        public Task<Entreprise> UpdateAsync(UpdateEntrepriseDto updateEntrepriseDto)
+        public async Task<Entreprise> UpdateAsync(UpdateEntrepriseDto updateEntrepriseDto, int entrepriseid)
         {
-            throw new NotImplementedException();
+            Entreprise? entreprise = await apiDbContext.Entreprises.FirstOrDefaultAsync(x => x.Id == entrepriseid);
+            if (entreprise == null)
+            {
+                return null;
+            }
+            entreprise.Name = updateEntrepriseDto.Name;
+            entreprise.Bio = updateEntrepriseDto.Bio;
+            entreprise.Supported = updateEntrepriseDto.Supported;
+            entreprise.Latitude = updateEntrepriseDto.Latitude;
+            entreprise.Longitude = updateEntrepriseDto.Longitude;
+            entreprise.Adress = updateEntrepriseDto.Adress;
+
+            if (updateEntrepriseDto.Image != null)
+            {
+                try
+                {
+                    // Ensure wwwroot folder exists
+                    string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/entreprises");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    // Generate a unique filename
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + updateEntrepriseDto.Image.FileName;
+
+                    // Save the file to wwwroot/uploads folder
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await updateEntrepriseDto.Image.CopyToAsync(fileStream);
+                    }
+                    string? filename = Path.GetFileName(entreprise.Image);
+                    string? firstimagepath = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/entreprises", filename);
+                    if (File.Exists(firstimagepath))
+                    {
+                        // Delete the file
+                        File.Delete(firstimagepath);
+                    }
+                    entreprise.Image = "http://localhost:5163/uploads/entreprises/" + uniqueFileName;
+
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+
+
+            }
+            await apiDbContext.SaveChangesAsync();
+            return entreprise;
         }
     }
 }

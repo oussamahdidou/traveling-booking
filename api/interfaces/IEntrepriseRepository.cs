@@ -13,7 +13,7 @@ namespace api.interfaces
     {
         Task<List<Entreprise>> GetEntreprisesAsync(QueryObject query);
         Task<Entreprise> GetEntrepriseByIdAsync(int id);
-        Task<Entreprise> UpdateAsync(UpdateEntrepriseDto updateEntrepriseDto);
+        Task<Entreprise> UpdateAsync(UpdateEntrepriseDto updateEntrepriseDto, int entrepriseid);
         Task<SearchDto> Search(string SearchQuery);
         Task<Entreprise> CreateEntrepriseAsync(CreateEntreprise createEntreprise);
         Task<List<Entreprise>> GetEntreprisesByVille(int id);

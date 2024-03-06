@@ -11,6 +11,8 @@ namespace api.Dtos.Entreprise
         public string? Name { get; set; }
         public string? Adress { get; set; }
         public string? Type { get; set; }
+        public IFormFile? Image { get; set; }
+
         public bool? Supported { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

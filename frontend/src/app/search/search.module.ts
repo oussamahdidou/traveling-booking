@@ -5,6 +5,7 @@ import { LocationComponent } from './location/location.component';
 import { QueryComponent } from './query/query.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MapComponent } from './map/map.component';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 const routes: Routes = [
   {
     path: '',

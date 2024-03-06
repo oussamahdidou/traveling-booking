@@ -27,7 +27,7 @@
             <div class="slider-caption p-5">
                 <h3>{{item.name}}</h3>
                 <h6>
-                    {{item.bio}}
+                    {{item.bio| truncate:200 }}
                 </h6>
             </div>
         </div>
@@ -56,7 +56,7 @@
             <h4>{{item.name}}</h4>
             <h5 class="text-secondary">{{item.adress}}</h5>
             <h6 class="text-secondary">
-                {{item.bio}}
+                {{item.bio| truncate:200 }}
             </h6>
             <div class="d-flex align-items-center">
                 <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)}}/5</p>
