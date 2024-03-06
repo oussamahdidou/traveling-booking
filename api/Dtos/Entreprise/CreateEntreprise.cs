@@ -16,5 +16,6 @@ namespace api.Dtos.Entreprise
         public double Longitude { get; set; }
         public int VilleId { get; set; }
         public string? AppUserId { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

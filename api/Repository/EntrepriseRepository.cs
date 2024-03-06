@@ -18,28 +18,57 @@ namespace api.Repository
     public class EntrepriseRepository : IEntrepriseRepository
     {
         private readonly apiDbContext apiDbContext;
-        public EntrepriseRepository(apiDbContext apiDbContext)
+        private readonly IWebHostEnvironment IWebHostEnvironment;
+        public EntrepriseRepository(apiDbContext apiDbContext, IWebHostEnvironment IWebHostEnvironment)
         {
+
             this.apiDbContext = apiDbContext;
+            this.IWebHostEnvironment = IWebHostEnvironment;
         }
 
         public async Task<Entreprise> CreateEntrepriseAsync(CreateEntreprise createEntreprise)
         {
-            var entreprise = new Entreprise()
+            var file = createEntreprise.Image;
+            if (file == null || file.Length == 0)
+                return null;
+
+            try
             {
-                Name = createEntreprise.Name,
-                Bio = createEntreprise.Bio,
-                Adress = createEntreprise.Adress,
-                Type = createEntreprise.Type,
-                Supported = createEntreprise.Supported,
-                Latitude = createEntreprise.Latitude,
-                Longitude = createEntreprise.Longitude,
-                VilleId = createEntreprise.VilleId,
-                AppUserId = createEntreprise.AppUserId
-            };
-            await apiDbContext.Entreprises.AddAsync(entreprise);
-            await apiDbContext.SaveChangesAsync();
-            return entreprise;
+                // Ensure wwwroot folder exists
+                string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/entreprises");
+                if (!Directory.Exists(uploadsFolder))
+                    Directory.CreateDirectory(uploadsFolder);
+
+                // Generate a unique filename
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+
+                // Save the file to wwwroot/uploads folder
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+                var entreprise = new Entreprise()
+                {
+                    Name = createEntreprise.Name,
+                    Bio = createEntreprise.Bio,
+                    Adress = createEntreprise.Adress,
+                    Type = createEntreprise.Type,
+                    Supported = createEntreprise.Supported,
+                    Latitude = createEntreprise.Latitude,
+                    Longitude = createEntreprise.Longitude,
+                    VilleId = createEntreprise.VilleId,
+                    AppUserId = createEntreprise.AppUserId,
+                    Image = "http://localhost:5163/uploads/entreprises/" + uniqueFileName
+                };
+                await apiDbContext.Entreprises.AddAsync(entreprise);
+                await apiDbContext.SaveChangesAsync();
+                return entreprise;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<Entreprise> GetEntrepriseByIdAsync(int id)

@@ -66,7 +66,7 @@ namespace api.Controller
         }
         [HttpPost]
         [Authorize/*(Roles = "Admin")*/]
-        public async Task<IActionResult> CreateEntreprise([FromBody] CreateEntreprise createEntreprise)
+        public async Task<IActionResult> CreateEntreprise([FromForm] CreateEntreprise createEntreprise)
         {
             string username = User.GetUsername();
             var user = await userManager.FindByNameAsync(username);
