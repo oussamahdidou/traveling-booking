@@ -11,8 +11,9 @@ obj/
 /node_modules
 npm-debug.log
 yarn-error.log
-api/obj/
 api/bin/
+api/obj/
+api/wwwroot/
 # IDEs and editors
 .idea/
 .project
