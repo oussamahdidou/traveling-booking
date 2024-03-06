@@ -30,7 +30,8 @@ namespace api.Service
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Email,appUser.Email ),
-                new Claim(JwtRegisteredClaimNames.GivenName,appUser.UserName)
+                new Claim(JwtRegisteredClaimNames.GivenName,appUser.UserName),
+                new Claim(JwtRegisteredClaimNames.UniqueName,appUser.Id)
             };
             foreach (var role in roles)
             {

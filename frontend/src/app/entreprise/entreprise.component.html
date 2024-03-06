@@ -24,7 +24,9 @@
                 </svg>
                 Voir la Localisation
             </p>
+            @if (authservice.$IsAdmin|async) {
             <button class="btn btn-danger mt-3" (click)="_showupdate()">Update</button>
+            }
             }
             @else {
             <form (ngSubmit)="onSubmit()">

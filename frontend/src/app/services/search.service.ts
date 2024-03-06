@@ -46,4 +46,7 @@ export class SearchService {
     return this.http.get('http://localhost:5163/api/Entreprise/top/type');
 
   }
+  UpdatePlace(place: any, placeid: number): Observable<any> {
+    return this.http.put("http://localhost:5163/api/Entreprise/" + placeid, place, { headers: this.authservice.headers });
+  }
 }

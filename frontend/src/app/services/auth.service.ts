@@ -8,6 +8,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class AuthService {
   private _$isLoggedin = new BehaviorSubject(false);
   $isloggedin = this._$isLoggedin.asObservable();
+  private _$IsAdmin = new BehaviorSubject(false);
+  $IsAdmin = this._$IsAdmin.asObservable();
   jwt: string = ''
   token: any;
   headers: any | undefined;
@@ -16,6 +18,9 @@ export class AuthService {
       this._$isLoggedin.next(true);
       this.jwt = localStorage.getItem("token") || '';
       this.token = this.getUser(this.jwt);
+      if (this.token && this.token.role === "admin") {
+        this._$IsAdmin.next(true);
+      }
       this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.jwt);
     }
     else {

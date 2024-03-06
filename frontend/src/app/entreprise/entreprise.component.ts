@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entreprise',
@@ -22,7 +23,7 @@ export class EntrepriseComponent implements OnInit {
   isLoggedIn: boolean = false;
   rating: number = 0;
   comments: any[] = [];
-  constructor(private authservice: AuthService, private route: ActivatedRoute, private searchservice: SearchService, private socialservice: SocialService) { }
+  constructor(public authservice: AuthService, private route: ActivatedRoute, private searchservice: SearchService, private socialservice: SocialService) { }
   ngOnInit(): void {
     this.authservice.$isloggedin.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
@@ -31,7 +32,11 @@ export class EntrepriseComponent implements OnInit {
         this.searchservice.PlaceById(this.itemId).subscribe(
           response => {
             this.place = response;
-            this.enterpriseData = response;
+            this.enterpriseData.adress = response.adress;
+            this.enterpriseData.bio = response.bio;
+            this.enterpriseData.name = response.name;
+
+
           },
           error => {
             console.log(error)
@@ -74,6 +79,22 @@ export class EntrepriseComponent implements OnInit {
         }
       );
     }
+    else {
+      Swal.fire({
+        title: 'Please login',
+        text: "You need to be logged",
+        timer: 3000,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/auth/login';
+        }
+      })
+    }
 
 
   }
@@ -94,12 +115,21 @@ export class EntrepriseComponent implements OnInit {
         formData.append(key, this.enterpriseData[key]);
       }
     }
+    this.searchservice.UpdatePlace(formData, this.itemId).subscribe(
+      response => {
+        console.log(response);
+        this._showupdate()
+      },
+      error => {
+        console.log(error)
+      }
+    )
 
   }
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.enterpriseData.append('image', file);
+      this.enterpriseData.image = file;
     }
   }
 }
