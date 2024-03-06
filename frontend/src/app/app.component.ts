@@ -5,11 +5,12 @@ import { NavigationEnd, NavigationStart, Router, RouterModule, RouterOutlet } fr
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './services/search.service';
+import { TruncatePipe } from './pipes/truncate.pipe';
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [AuthService, SearchService],
-  imports: [RouterModule, RouterOutlet, CommonModule, FormsModule, HttpClientModule],
+  imports: [RouterModule, RouterOutlet, CommonModule, FormsModule, HttpClientModule, TruncatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
