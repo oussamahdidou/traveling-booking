@@ -73,7 +73,7 @@ namespace api.Repository
 
         public async Task<Entreprise> GetEntrepriseByIdAsync(int id)
         {
-            Entreprise? entreprise = await apiDbContext.Entreprises.Include(x => x.Ratings).FirstOrDefaultAsync(x => x.Id == id);
+            Entreprise? entreprise = await apiDbContext.Entreprises.Include(x => x.Ratings).Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == id);
             return entreprise;
         }
 
@@ -209,11 +209,7 @@ namespace api.Repository
             }
             entreprise.Name = updateEntrepriseDto.Name;
             entreprise.Bio = updateEntrepriseDto.Bio;
-            entreprise.Supported = updateEntrepriseDto.Supported;
-            entreprise.Latitude = updateEntrepriseDto.Latitude;
-            entreprise.Longitude = updateEntrepriseDto.Longitude;
             entreprise.Adress = updateEntrepriseDto.Adress;
-
             if (updateEntrepriseDto.Image != null)
             {
                 try

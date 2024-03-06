@@ -18,7 +18,8 @@ export class AuthService {
       this._$isLoggedin.next(true);
       this.jwt = localStorage.getItem("token") || '';
       this.token = this.getUser(this.jwt);
-      if (this.token && this.token.role === "admin") {
+      console.log(this.token);
+      if (this.token && this.token.role === "Admin") {
         this._$IsAdmin.next(true);
       }
       this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.jwt);

@@ -18,6 +18,8 @@ import Swal from 'sweetalert2';
 })
 export class EntrepriseComponent implements OnInit {
   place: any;
+  countries: any[] = [];
+  cities: any[] = [];
   itemId: number = 0;
   comment: string = '';
   isLoggedIn: boolean = false;
@@ -131,5 +133,14 @@ export class EntrepriseComponent implements OnInit {
       const file = event.target.files[0];
       this.enterpriseData.image = file;
     }
+  }
+  getcity($event: any) {
+    this.searchservice.GetCities($event.target.value).subscribe(response => {
+      this.cities = response;
+    },
+      error => {
+        console.log(error);
+      });
+
   }
 }

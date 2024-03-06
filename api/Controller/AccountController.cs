@@ -42,8 +42,8 @@ namespace api.Controller
                 Token = await tokenService.CreateToken(user)
             });
         }
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationDto model)
+        [HttpPost("Register/User")]
+        public async Task<IActionResult> RegisterUser([FromBody] RegistrationDto model)
         {
             try
             {
@@ -57,6 +57,46 @@ namespace api.Controller
                 if (createuser.Succeeded)
                 {
                     var roleresult = await userManager.AddToRoleAsync(appUser, "User");
+                    if (roleresult.Succeeded)
+                        return Ok(new NewUserDto()
+                        {
+                            Username = appUser.UserName,
+                            Email = appUser.Email,
+                            Token = await tokenService.CreateToken(appUser)
+                        });
+                    else
+                    {
+                        return StatusCode(500, roleresult.Errors);
+                    }
+                }
+                else
+                {
+                    return StatusCode(500, createuser.Errors);
+
+                }
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+
+            }
+
+        }
+        [HttpPost("Register/admin")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegistrationDto model)
+        {
+            try
+            {
+                var appUser = new AppUser()
+                {
+                    UserName = model.Username,
+                    Email = model.EmailAddress,
+
+                };
+                var createuser = await userManager.CreateAsync(appUser, model.Password);
+                if (createuser.Succeeded)
+                {
+                    var roleresult = await userManager.AddToRoleAsync(appUser, "Admin");
                     if (roleresult.Succeeded)
                         return Ok(new NewUserDto()
                         {

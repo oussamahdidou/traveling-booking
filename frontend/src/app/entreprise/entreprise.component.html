@@ -24,7 +24,7 @@
                 </svg>
                 Voir la Localisation
             </p>
-            @if (authservice.$IsAdmin|async) {
+            @if ((authservice.$IsAdmin| async)&& place.appUser.id==authservice.token.unique_name) {
             <button class="btn btn-danger mt-3" (click)="_showupdate()">Update</button>
             }
             }
@@ -43,7 +43,6 @@
                     <input class="pb-3 ps-3 pt-2 border-0 update-input" type="text" id="address" name="address"
                         [(ngModel)]="enterpriseData.adress">
 
-                    <!-- Add other fields as per your DTO -->
 
                     <input class="pb-3 ps-3 pt-2 border-0 " type="file" (change)="onFileSelected($event)"
                         accept="image/*">
