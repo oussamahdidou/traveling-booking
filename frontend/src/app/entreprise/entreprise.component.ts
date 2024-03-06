@@ -31,6 +31,7 @@ export class EntrepriseComponent implements OnInit {
         this.searchservice.PlaceById(this.itemId).subscribe(
           response => {
             this.place = response;
+            this.enterpriseData = response;
           },
           error => {
             console.log(error)
@@ -81,5 +82,24 @@ export class EntrepriseComponent implements OnInit {
       this.socialservice.addcomment(this.comment, this.itemId).subscribe(response => { this.comments.unshift(response) }, error => { console.log(error) });
     }
   }
+  enterpriseData: any = {};
+  showupdate: boolean = false;
+  _showupdate() {
+    this.showupdate = !this.showupdate;
+  }
+  onSubmit() {
+    const formData = new FormData();
+    for (const key in this.enterpriseData) {
+      if (this.enterpriseData.hasOwnProperty(key)) {
+        formData.append(key, this.enterpriseData[key]);
+      }
+    }
 
+  }
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.enterpriseData.append('image', file);
+    }
+  }
 }

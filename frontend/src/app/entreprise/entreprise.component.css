@@ -109,3 +109,10 @@
 .hotel-card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.update-input {
+  background-color: #f3f3f3;
+  outline: none;
+}
+textarea {
+  height: 150px;
+}
