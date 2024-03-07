@@ -61,6 +61,7 @@ namespace api.Controller
             return Ok(entreprises);
         }
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromForm] UpdateEntrepriseDto updateEntrepriseDto)
         {
             Entreprise? entreprise = await entrepriseRepository.UpdateAsync(updateEntrepriseDto, id);
@@ -71,7 +72,7 @@ namespace api.Controller
             return NotFound("something went wrong ...");
         }
         [HttpPost]
-        [Authorize/*(Roles = "Admin")*/]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateEntreprise([FromForm] CreateEntreprise createEntreprise)
         {
             string username = User.GetUsername();

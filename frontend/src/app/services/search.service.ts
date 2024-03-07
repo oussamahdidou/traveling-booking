@@ -49,4 +49,7 @@ export class SearchService {
   UpdatePlace(place: any, placeid: number): Observable<any> {
     return this.http.put("http://localhost:5163/api/Entreprise/" + placeid, place, { headers: this.authservice.headers });
   }
+  CreatePlace(place: any): Observable<any> {
+    return this.http.post('http://localhost:5163/api/Entreprise/', place, { headers: this.authservice.headers })
+  }
 }

@@ -47,6 +47,11 @@ namespace api.Controller
             var countries = await countriesCities.GetAllCountries();
             return Ok(countries);
         }
+        [HttpGet("helloworld")]
+        public async Task<IActionResult> Helloworld()
+        {
+            return Ok("hello world");
+        }
 
     }
 }

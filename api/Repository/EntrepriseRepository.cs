@@ -28,47 +28,53 @@ namespace api.Repository
 
         public async Task<Entreprise> CreateEntrepriseAsync(CreateEntreprise createEntreprise)
         {
-            var file = createEntreprise.Image;
-            if (file == null || file.Length == 0)
-                return null;
-
-            try
+            bool exists = await apiDbContext.Entreprises.AnyAsync(x => x.AppUserId == createEntreprise.AppUserId);
+            if (!exists)
             {
-                // Ensure wwwroot folder exists
-                string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/entreprises");
-                if (!Directory.Exists(uploadsFolder))
-                    Directory.CreateDirectory(uploadsFolder);
+                var file = createEntreprise.Image;
+                if (file == null || file.Length == 0)
+                    return null;
 
-                // Generate a unique filename
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-
-                // Save the file to wwwroot/uploads folder
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                try
                 {
-                    await file.CopyToAsync(fileStream);
+                    // Ensure wwwroot folder exists
+                    string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/entreprises");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    // Generate a unique filename
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+
+                    // Save the file to wwwroot/uploads folder
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    var entreprise = new Entreprise()
+                    {
+                        Name = createEntreprise.Name,
+                        Bio = createEntreprise.Bio,
+                        Adress = createEntreprise.Adress,
+                        Type = createEntreprise.Type,
+                        Supported = createEntreprise.Supported,
+                        Latitude = createEntreprise.Latitude,
+                        Longitude = createEntreprise.Longitude,
+                        VilleId = createEntreprise.VilleId,
+                        AppUserId = createEntreprise.AppUserId,
+                        Image = "http://localhost:5163/uploads/entreprises/" + uniqueFileName
+                    };
+                    await apiDbContext.Entreprises.AddAsync(entreprise);
+                    await apiDbContext.SaveChangesAsync();
+                    return entreprise;
                 }
-                var entreprise = new Entreprise()
+                catch (Exception)
                 {
-                    Name = createEntreprise.Name,
-                    Bio = createEntreprise.Bio,
-                    Adress = createEntreprise.Adress,
-                    Type = createEntreprise.Type,
-                    Supported = createEntreprise.Supported,
-                    Latitude = createEntreprise.Latitude,
-                    Longitude = createEntreprise.Longitude,
-                    VilleId = createEntreprise.VilleId,
-                    AppUserId = createEntreprise.AppUserId,
-                    Image = "http://localhost:5163/uploads/entreprises/" + uniqueFileName
-                };
-                await apiDbContext.Entreprises.AddAsync(entreprise);
-                await apiDbContext.SaveChangesAsync();
-                return entreprise;
+                    return null;
+                }
+
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            return null;
         }
 
         public async Task<Entreprise> GetEntrepriseByIdAsync(int id)
