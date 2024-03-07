@@ -77,6 +77,15 @@ namespace api.Repository
             return null;
         }
 
+        public async Task<int> GetAdminEntreprise(string adminid)
+        {
+            var entrepriseId = await apiDbContext.Entreprises
+                .Where(x => x.AppUserId == adminid)
+                .Select(x => x.Id)
+                .FirstOrDefaultAsync();
+            return entrepriseId;
+        }
+
         public async Task<Entreprise> GetEntrepriseByIdAsync(int id)
         {
             Entreprise? entreprise = await apiDbContext.Entreprises.Include(x => x.Ratings).Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == id);

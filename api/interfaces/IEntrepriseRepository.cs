@@ -20,6 +20,7 @@ namespace api.interfaces
         Task<List<Entreprise>> GetEntreprisesBYLocation(double lat, double lng);
         Task<List<Entreprise>> GetTopFiveEntreprises(TopFiveQuery topFiveQuery);
         Task<TopFiveTypeDTo> GetTopFiveBytypeyEntreprises();
+        Task<int> GetAdminEntreprise(string adminid);
 
     }
 }

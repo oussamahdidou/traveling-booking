@@ -96,6 +96,17 @@ namespace api.Controller
             TopFiveTypeDTo topFiveTypeDTo = await entrepriseRepository.GetTopFiveBytypeyEntreprises();
             return Ok(topFiveTypeDTo);
         }
+        [HttpGet("Admin/place")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAdminPlace()
+        {
+            string username = User.GetUsername();
+            var user = await userManager.FindByNameAsync(username);
+
+
+            int id = await entrepriseRepository.GetAdminEntreprise(user.Id);
+            return Ok(id);
+        }
 
     }
 }
