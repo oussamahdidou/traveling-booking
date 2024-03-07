@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CreatepalceComponent } from './createpalce/createpalce.component';
 import { AdminGuard } from '../gaurds/admin.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +19,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'user', component: UserComponent },
       { path: 'admin', component: AdminComponent },
-      { path: 'createplace', component: CreatepalceComponent, /*canActivate: [AdminGuard],*/ }
+      { path: 'createplace', component: CreatepalceComponent, canActivate: [AdminGuard], providers: [AuthService, Permissions, HttpClientModule] }
     ],
   },
 ];
@@ -30,6 +31,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
-  ]
+  ],
+  providers: [AuthService, AdminGuard]
 })
 export class AuthModule { }

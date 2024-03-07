@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable, map, take } from 'rxjs';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable, map, take, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -13,19 +13,17 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
+  ): Observable<boolean | UrlTree> |
+    Promise<boolean | UrlTree> |
+    boolean |
+    UrlTree {
     // Check if user is an admin
-    return this.authService.$IsAdmin.pipe(
-      take(1), // take only one value from the observable
-      map(isAdmin => {
-        if (isAdmin) {
-          return true; // Allow access to the route if user is an admin
-        } else {
-          // If not an admin, redirect to some other route or show an error
-          this.router.navigate(['/auth/login']); // Redirect to not authorized page
-          return false;
+    return this.authService.$IsAdmin.pipe(tap(
+      isadmin => {
+        if (!isadmin) {
+          this.router.navigate(['/auth/login']);
         }
-      })
-    );
+      }
+    ));
   }
 }
