@@ -89,7 +89,7 @@
                 <h5>{{item.name}}</h5>
                 <h6 class="text-secondary mb-0">{{item.adress}}</h6>
                 <div class="d-flex align-items-center">
-                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)}}/5</p>
+                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)| number:'1.1-1'}}/5</p>
                     <div class="rating">
                         <input value="5" name="rating" id="star5" type="radio">
                         <label [style.color]="calculateAverageRate(item)>=5? '#6f00ff' : '#acacac'" for="star5"></label>
@@ -147,7 +147,7 @@
                 <h5>{{item.name}}</h5>
                 <h6 class="text-secondary mb-0">{{item.adress}}</h6>
                 <div class="d-flex align-items-center">
-                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)}}/5</p>
+                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)| number:'1.1-1'}}/5</p>
                     <div class="rating">
                         <input value="5" name="rating" id="star5" type="radio">
                         <label [style.color]="calculateAverageRate(item)>=5? '#6f00ff' : '#acacac'" for="star5"></label>
@@ -203,7 +203,7 @@
                 <h5>{{item.name}}</h5>
                 <h6 class="text-secondary mb-0">{{item.adress}}</h6>
                 <div class="d-flex align-items-center">
-                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)}}/5</p>
+                    <p class="fw-bold m-0 me-2">{{calculateAverageRate(item)| number:'1.1-1'}}/5</p>
                     <div class="rating">
                         <input value="5" name="rating" id="star5" type="radio">
                         <label [style.color]="calculateAverageRate(item)>=5? '#6f00ff' : '#acacac'" for="star5"></label>
