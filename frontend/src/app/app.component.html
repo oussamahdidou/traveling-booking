@@ -139,15 +139,20 @@
 
 
 
-<div class="side-nav justify-content-start align-items-start bg-white flex-column"
-  [ngClass]="{active: sidenave&&!showsearch}">
+<div class="side-nav   bg-white flex-column" [ngClass]="{active: sidenave&&!showsearch}">
   <button class="fw-bold bg-white border-0 p-4" (click)="showsidenav()">
     <h5 class="m-0 p-0"><span style="color: #a435f0;">Travel</span>Nest</h5>
   </button>
-  <div style="width: 100%;" class="py-3 side-nav-items flex-column d-flex align-items-center justify-content-center">
-    <h4>map</h4>
-    <h4>Just For You</h4>
-    <h4>News</h4>
+  <div style="width: 100%;" class="py-3  side-nav-items flex-column d-flex ">
+    <div class="px-3 py-3 links ">
+      <h4 class="text-start m-0 p-0">map</h4>
+    </div>
+    <div class="px-3 py-3 links">
+      <h4 class="text-start m-0 p-0">Just For You</h4>
+    </div>
+    <div class="px-3 py-3 links">
+      <h4 class="text-start m-0 p-0">News</h4>
+    </div>
   </div>
 </div>
 }
