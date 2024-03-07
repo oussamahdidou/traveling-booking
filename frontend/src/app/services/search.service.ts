@@ -52,4 +52,8 @@ export class SearchService {
   CreatePlace(place: any): Observable<any> {
     return this.http.post('http://localhost:5163/api/Entreprise/', place, { headers: this.authservice.headers })
   }
+  getAdminplace(): Observable<any> {
+    return this.http.get('http://localhost:5163/api/Entreprise/Admin/place', { headers: this.authservice.headers })
+
+  }
 }

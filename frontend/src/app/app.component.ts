@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   entreprises: any[] = [];
   sidenave: boolean = false;
   constructor(private router: Router, public authservice: AuthService, private searchservice: SearchService) { }
-
+  adminplaceid: number = 0;
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -34,6 +34,13 @@ export class AppComponent implements OnInit {
         this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
       }
     });
+    this.authservice.$IsAdmin.subscribe(response => {
+      if (response == true) {
+        this.searchservice.getAdminplace().subscribe(response => { this.adminplaceid = response; })
+      }
+    })
+
+
   }
   logout() {
     this.authservice.logout();

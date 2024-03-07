@@ -5,10 +5,13 @@ import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import { SearchService } from '../../services/search.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-createpalce',
   standalone: true,
-  imports: [FormsModule],
+  providers: [AuthService, SearchService],
+  imports: [FormsModule, HttpClientModule, RouterModule],
   templateUrl: './createpalce.component.html',
   styleUrl: './createpalce.component.css'
 })
@@ -16,6 +19,7 @@ export class CreatepalceComponent implements OnInit, AfterViewInit, OnDestroy {
   map: Map | undefined;
   marker: Marker | undefined;
   countries: any[] = [];
+
   constructor(private router: Router, private searchservice: SearchService) {
 
   }
@@ -82,16 +86,15 @@ export class CreatepalceComponent implements OnInit, AfterViewInit, OnDestroy {
         formData.append(key, this.enterpriseData[key]);
       }
     }
-    console.log(this.enterpriseData);
-    // this.searchservice.UpdatePlace(formData, 21).subscribe(
-    //   response => {
-    //     console.log(response);
+    this.searchservice.CreatePlace(formData).subscribe(
+      response => {
+        console.log(response);
 
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // )
+      },
+      error => {
+        console.log(error)
+      }
+    )
 
   }
   onFileSelected(event: any) {
