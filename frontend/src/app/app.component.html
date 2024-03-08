@@ -5,14 +5,17 @@
   </a>
   <!-- Search bar -->
   <div class="search-container d-flex p-1 ps-3">
-    <button [routerLink]="['/search/query/'+search]">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
-        viewBox="0 0 16 16">
-        <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-      </svg>
-    </button>
-    <input type="text" [(ngModel)]="search" (input)="_search()" placeholder="u can search for a place or a city ...">
+    <form action="" class="d-flex w-100 justify-content-between align-items-center" (submit)="onSearch()">
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+      </button>
+      <input type="text" [(ngModel)]="search" name="search" (input)="_search()"
+        placeholder="u can search for a place or a city ...">
+    </form>
     @if (search.length>=3&&(entreprises.length>0||villes.length>0)) {
     <div class="search-items d-flex flex-column py-3 ">
       @for (item of entreprises; track $index)
@@ -69,15 +72,19 @@
 
 <nav class=" small-device container-fluid  pt-1 pb-2 justify-content-between align-items-center">
   @if ( showsearch) {
+
   <div style="width: 100%;" class="search-container d-flex p-1 ps-3">
-    <button [routerLink]="['/search/query/'+search]">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
-        viewBox="0 0 16 16">
-        <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-      </svg>
-    </button>
-    <input type="text" [(ngModel)]="search" (input)="_search()" placeholder="u can search for a place or a city ...">
+    <form action="" class="d-flex justify-content-between align-items-center w-100" (submit)="onSearch()">
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+      </button>
+      <input type="text" [(ngModel)]="search" name="search" (input)="_search()"
+        placeholder="u can search for a place or a city ...">
+    </form>
     @if (search.length>=3&&(entreprises.length>0||villes.length>0)) {
     <div class="search-items d-flex flex-column py-3 ">
       @for (item of entreprises; track $index)
@@ -159,124 +166,199 @@
 <router-outlet></router-outlet>
 @if(showNavbar){
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
-          </h6>
-          <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+<footer id="dk-footer" class="dk-footer ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-4">
+        <div class="dk-footer-box-info">
+          <h4 class="text-white pb-3">Creator</h4>
+          <a href="index.html" class="footer-logo">
+            <img style="border-radius: 25px;" src="../assets/img/WhatsApp Image 2024-03-08 at 14.02.25.jpeg"
+              alt="footer_logo" class="img-fluid">
+          </a>
+          <p class="footer-info-text">
+            I`m a software engineer who loves to create something useful and beautiful for the community.
           </p>
+          <div class="footer-social-link">
+            <h3>Follow me</h3>
+            <ul>
+              <li>
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-instagram"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- End Social link -->
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
+        <!-- End Footer info -->
+        <div class="footer-awarad">
+          <img src="images/icon/best.png" alt="">
+          <p>Best Design Company 2019</p>
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Pricing</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            infoexample.com
-          </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-        </div>
-        <!-- Grid column -->
       </div>
-      <!-- Grid row -->
-    </div>
-  </section>
-  <!-- Section: Links  -->
+      <!-- End Col -->
+      <div class="col-md-12 col-lg-8">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="contact-us">
 
-  <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+              <!-- End contact Icon -->
+
+              <!-- End Contact Info -->
+            </div>
+            <!-- End Contact Us -->
+          </div>
+          <!-- End Col -->
+          <div class="col-md-6">
+            <div class="contact-us contact-us-last">
+
+              <!-- End contact Icon -->
+
+              <!-- End Contact Info -->
+            </div>
+            <!-- End Contact Us -->
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Contact Row -->
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <div class="footer-widget footer-left-widget">
+              <div class="section-heading">
+                <h3>Useful Links</h3>
+                <span class="animate-border border-black"></span>
+              </div>
+              <ul>
+                <li>
+                  <a href="https://www.github.com/oussamahdidou">About me</a>
+                </li>
+
+                <li>
+                  <a href="https://github.com/oussamahdidou?tab=repositories">Projects</a>
+                </li>
+
+
+
+                <li>
+                  <a href="#">Contact me</a>
+                </li>
+
+
+              </ul>
+            </div>
+            <!-- End Footer Widget -->
+          </div>
+          <!-- End col -->
+          <div class="col-md-12 col-lg-6">
+            <div class="footer-widget footer-left-widget">
+              <div class="section-heading">
+                <h3 class="text-center">Subscribe</h3>
+                <span class="animate-border border-black"></span>
+              </div>
+              <p><!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+              <div class="contact-us contact-us-last">
+                <div class="contact-icon">
+                  <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                </div>
+                <!-- End contact Icon -->
+                <div class="contact-info">
+                  <h3>+212 6 51 75 54 23</h3>
+                  <p>Give me a call</p>
+                </div>
+                <!-- End Contact Info -->
+              </div>
+              <div class="contact-us contact-us-last">
+                <div class="contact-icon">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </div>
+                <!-- End contact Icon -->
+                <div class="contact-info">
+                  <h3>oussamahdidou15&commat;gmail.com</h3>
+                  <p>E-mail :</p>
+                </div>
+                <!-- End Contact Info -->
+              </div>
+              <form action="#">
+                <div class="form-row">
+                  <div class="col dk-footer-form">
+
+                  </div>
+                </div>
+              </form>
+              <!-- End form -->
+            </div>
+            <!-- End footer widget -->
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Widget Row -->
   </div>
-  <!-- Copyright -->
+  <!-- End Contact Container -->
+
+
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <span>Copyright © 2019, All Right Reserved Seobin</span>
+        </div>
+        <!-- End Col -->
+        <div class="col-md-6">
+          <div class="copyright-menu">
+            <ul>
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Terms</a>
+              </li>
+              <li>
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- End col -->
+      </div>
+      <!-- End Row -->
+    </div>
+    <!-- End Copyright Container -->
+  </div>
+  <!-- End Copyright -->
+  <!-- Back to top -->
+  <div id="back-to-top" class="back-to-top">
+    <button class="btn btn-dark" title="Back to Top" style="display: block;">
+      <i class="fa fa-angle-up"></i>
+    </button>
+  </div>
+  <!-- End Back to top -->
 </footer>
 <!-- Footer -->}

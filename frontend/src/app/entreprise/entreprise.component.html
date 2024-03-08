@@ -8,7 +8,7 @@
     <img src="{{place.image}}" alt="">
 </div>
 
-<div class="container-fluid row p-0">
+<div class="container-fluid row p-0 mb-5">
     <div class="col-lg-8 p-lg-3 py-5 d-flex flex-column gap-3 ">
         <div class="info-container py-4 px-4 mt-5">
             @if (!showupdate) {
@@ -83,19 +83,21 @@
             </div>
         </div>
         <div class="info-container py-4 px-3">
-            <div class="comment-input-container d-flex align-items-center ">
-                <input class="comment-input p-2 px-3" type="text" name="comment" [(ngModel)]="comment"
-                    placeholder="Add a new comment ...">
-                <button class="comment-button p-2 px-3" (click)="addcomment()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0" />
-                    </svg>
-                </button>
+            <form action="" (submit)="addcomment()">
 
+                <div class="comment-input-container d-flex align-items-center ">
+                    <input class="comment-input p-2 px-3" type="text" name="comment" [(ngModel)]="comment"
+                        placeholder="Add a new comment ...">
+                    <button class="comment-button p-2 px-3" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0" />
+                        </svg>
+                    </button>
 
-            </div>
+                </div>
+            </form>
             @if (comments.length===0) {
             <p class="py-4 m-0 text-center text-secondary fw-bold">no comments yet</p>
             }
@@ -142,7 +144,7 @@
 </div>
 }
 @else if(itemId==0) {
-<div class="h-100 d-flex align-items-center  w-100">
+<div class="h-100 d-flex align-items-center mb-5  w-100">
     <a href="/auth/createplace" class="p-3 btn btn-danger mx-auto my-5">No Place Found Create yours</a>
 
 </div>

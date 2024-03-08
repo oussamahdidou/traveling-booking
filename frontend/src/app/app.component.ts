@@ -65,6 +65,9 @@ export class AppComponent implements OnInit {
   showsidenav() {
     this.sidenave = !this.sidenave;
   }
+  onSearch() {
+    this.router.navigate([`search/query/${this.search}`]);
+  }
   title = 'travelnest';
   search: string = '';
 
