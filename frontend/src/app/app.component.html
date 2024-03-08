@@ -70,10 +70,10 @@
 
 
 
-<nav class=" small-device container-fluid  pt-1 pb-2 justify-content-between align-items-center">
+<nav class=" small-device container-fluid  py-1 pb-2 justify-content-between align-items-center">
   @if ( showsearch) {
 
-  <div style="width: 100%;" class="search-container d-flex p-1 ps-3">
+  <div style="width: 100%;" class="search-container d-flex p-1 my-1 ps-3">
     <form action="" class="d-flex justify-content-between align-items-center w-100" (submit)="onSearch()">
       <button type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
@@ -148,9 +148,15 @@
 
 <div class="side-nav   bg-white flex-column" [ngClass]="{active: sidenave&&!showsearch}">
   <button class="fw-bold bg-white border-0 p-4" (click)="showsidenav()">
-    <h5 class="m-0 p-0"><span style="color: #a435f0;">Travel</span>Nest</h5>
+    <h5 class="m-0 p-0 fw-bold">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+      </svg>
+    </h5>
   </button>
-  <div style="width: 100%;" class="py-3  side-nav-items flex-column d-flex ">
+  <div style="width: 100%;" class="py-3 mb-5 side-nav-items flex-column d-flex ">
     <div class="px-3 py-3 links ">
       <h4 class="text-start m-0 p-0">map</h4>
     </div>
@@ -160,6 +166,16 @@
     <div class="px-3 py-3 links">
       <h4 class="text-start m-0 p-0">News</h4>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    @if (authservice.$isloggedin|async) {
+
+    <a href="" class="px-3 mt-5 register" (click)="logout()">Logout</a>
+    }
+    @else {
+    <a href="/auth/login" class="px-4 mt-5 login">Login</a>
+    <a href="/auth/register" class="px-3 mt-5 register">Register</a>
+    }
   </div>
 </div>
 }

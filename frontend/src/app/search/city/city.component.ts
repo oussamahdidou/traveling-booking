@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
@@ -16,7 +16,7 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 export class CityComponent implements OnInit {
   places: any[] = [];
   top: any[] = [];
-  constructor(private route: ActivatedRoute, private searchService: SearchService) { }
+  constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const itemId = params['id'];
@@ -34,7 +34,8 @@ export class CityComponent implements OnInit {
     });
   }
 
-  movetonext() {
+  movetonext(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === this.top.length - 1) {
       this.selectedIndex = 0;
     }
@@ -43,7 +44,8 @@ export class CityComponent implements OnInit {
     }
 
   }
-  movetoback() {
+  movetoback(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === 0) {
       this.selectedIndex = this.top.length - 1;
     }
@@ -51,6 +53,9 @@ export class CityComponent implements OnInit {
       this.selectedIndex--;
     }
 
+  }
+  gotoplace(id: number) {
+    this.router.navigate(['/place/' + id])
   }
   selectedIndex: number = 0;
   calculateAverageRate(place: any): number {

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   hotels: any[] = [];
   restaurants: any[] = []
   activities: any[] = []
-  constructor(private searchservice: SearchService) {
+  constructor(private searchservice: SearchService, private router: Router) {
 
 
   }
@@ -54,7 +54,8 @@ export class HomeComponent implements OnInit {
       });
 
   }
-  movetonext() {
+  movetonext(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === this.top.length - 1) {
       this.selectedIndex = 0;
     }
@@ -63,7 +64,8 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  movetoback() {
+  movetoback(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === 0) {
       this.selectedIndex = this.top.length - 1;
     }
@@ -71,6 +73,9 @@ export class HomeComponent implements OnInit {
       this.selectedIndex--;
     }
 
+  }
+  gotoplace(id: number) {
+    this.router.navigate(['/place/' + id])
   }
   selectedIndex: number = 0;
   calculateAverageRate(place: any): number {

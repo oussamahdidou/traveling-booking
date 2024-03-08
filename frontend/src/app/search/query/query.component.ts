@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
@@ -17,7 +17,7 @@ export class QueryComponent implements OnInit {
   places: any[] = [];
   query!: string;
   top: any[] = [];
-  constructor(private route: ActivatedRoute, private searchService: SearchService) { }
+  constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.query = params['query'];
@@ -31,7 +31,8 @@ export class QueryComponent implements OnInit {
       this.searchService.TopPlacesByQuery(this.query).subscribe(response => { this.top = response })
     });
   }
-  movetonext() {
+  movetonext(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === this.top.length - 1) {
       this.selectedIndex = 0;
     }
@@ -40,7 +41,8 @@ export class QueryComponent implements OnInit {
     }
 
   }
-  movetoback() {
+  movetoback(event: Event) {
+    event.stopPropagation();
     if (this.selectedIndex === 0) {
       this.selectedIndex = this.top.length - 1;
     }
@@ -48,6 +50,9 @@ export class QueryComponent implements OnInit {
       this.selectedIndex--;
     }
 
+  }
+  gotoplace(id: number) {
+    this.router.navigate(['/place/' + id])
   }
   selectedIndex: number = 0;
   calculateAverageRate(place: any): number {
