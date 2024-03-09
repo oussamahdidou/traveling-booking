@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Ads;
+using api.helpers;
 using api.interfaces;
 using api.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
 
 namespace api.Repository
@@ -29,7 +31,7 @@ namespace api.Repository
             try
             {
                 // Ensure wwwroot folder exists
-                string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads");
+                string uploadsFolder = Path.Combine(IWebHostEnvironment.WebRootPath, "uploads/ads");
                 if (!Directory.Exists(uploadsFolder))
                     Directory.CreateDirectory(uploadsFolder);
 
@@ -47,7 +49,7 @@ namespace api.Repository
                 {
                     Content = createAdDto.Content,
                     EntrepriseId = createAdDto.EntrepriseId,
-                    Image = filePath,
+                    Image = "http://localhost:5163/uploads/ads/" + uniqueFileName,
                     Title = createAdDto.Title,
 
 
@@ -63,7 +65,13 @@ namespace api.Repository
             }
         }
 
-        public Task<List<Ads>> GetAllAds(int page)
+        public async Task<List<Ads>> GetAdsByPlace(int cityid)
+        {
+            List<Ads> ads = await apiDbContext.Ads.Where(x => x.EntrepriseId == cityid).ToListAsync();
+            return ads;
+        }
+
+        public Task<List<Ads>> GetAllAds(AdsQuery adsQuery)
         {
             throw new NotImplementedException();
         }

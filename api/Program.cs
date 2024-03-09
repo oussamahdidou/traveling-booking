@@ -90,7 +90,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowOrigin",
         builder => builder.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod());
+                    .AllowAnyMethod()
+                    );
 });
 
 builder.Services.AddScoped<IEntrepriseRepository, EntrepriseRepository>();

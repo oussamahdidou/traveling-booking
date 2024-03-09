@@ -12,12 +12,20 @@ namespace api.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AdsController : ControllerBase
+    public class NewsController : ControllerBase
     {
         private readonly IAdsRepository adsRepository;
-        public AdsController(IAdsRepository adsRepository)
+
+        public NewsController(IAdsRepository adsRepository)
         {
             this.adsRepository = adsRepository;
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAdsByPlaceAsync([FromRoute] int id)
+        {
+            List<Ads> ads = await adsRepository.GetAdsByPlace(id);
+            return Ok(ads);
         }
         [HttpPost]
         [Authorize]

@@ -11,7 +11,8 @@ namespace api.interfaces
     public interface IAdsRepository
     {
         Task<Ads> CreateAd(CreateAdDto createAdDto);
-        Task<List<Ads>> GetAllAds(int page);
+        Task<List<Ads>> GetAllAds(AdsQuery query);
+        Task<List<Ads>> GetAdsByPlace(int cityid);
 
     }
 }
