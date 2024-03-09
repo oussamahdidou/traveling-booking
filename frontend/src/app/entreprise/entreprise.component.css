@@ -116,3 +116,10 @@
 textarea {
   height: 150px;
 }
+.update-button {
+  color: #fff;
+  background-color: black;
+  outline: none;
+  border: 1px solid #000;
+  font-weight: 600;
+}

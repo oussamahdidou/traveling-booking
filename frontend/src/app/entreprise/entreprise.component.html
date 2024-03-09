@@ -17,15 +17,10 @@
             <p class="text-secondary bio">
                 {{place.bio}}
             </p>
-            <p class="bio m-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                </svg>
-                Voir la Localisation
-            </p>
+
             @if ((authservice.$IsAdmin| async)&& place.appUser.id==authservice.token.unique_name) {
-            <button class="btn btn-danger mt-3" (click)="_showupdate()">Update</button>
+            <button class="update-button mt-3 px-4 py-3 me-auto " (click)="_showupdate()">Update</button>
+
             }
             }
             @else {
@@ -47,8 +42,10 @@
                     <input class="pb-3 ps-3 pt-2 border-0 " type="file" (change)="onFileSelected($event)"
                         accept="image/*">
                     <div class="d-flex justify-content-between align-items-center">
-                        <button class="btn btn-info text-white " (click)="_showupdate()">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <button type="submit" class="update-button mt-3 px-4 py-3 ">Submit</button>
+
+                        <button class="update-button mt-3 px-4 py-3 bg-white text-dark"
+                            (click)="_showupdate()">Cancel</button>
 
                     </div>
                 </div>
@@ -144,8 +141,12 @@
 </div>
 }
 @else if(itemId==0) {
-<div class="h-100 d-flex align-items-center mb-5  w-100">
-    <a href="/auth/createplace" class="p-3 btn btn-danger mx-auto my-5">No Place Found Create yours</a>
+
+<div class=" w-50 container d-flex flex-column mx-auto my-4">
+
+    <img src="../../assets/svg/20824295_6342466.svg" alt="" class=" w-100">
+    <button [routerLink]="['/auth/createplace']" class="update-button mb-5  px-lg-4 py-3 mx-auto">Go Create your
+        place</button>
 
 </div>
 }
