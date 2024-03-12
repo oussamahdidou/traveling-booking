@@ -17,7 +17,6 @@ export class AdminGuard implements CanActivate {
     Promise<boolean | UrlTree> |
     boolean |
     UrlTree {
-    // Check if user is an admin
     return this.authService.$IsAdmin.pipe(tap(
       isadmin => {
         if (!isadmin) {

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationStart) {
         // Increment the route change count
         this.search = '';
+        this.sidenave = false;
         // You can put any logic here you want to execute upon route change
       }
     });

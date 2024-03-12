@@ -104,6 +104,23 @@ export class EntrepriseComponent implements OnInit {
     if (this.isLoggedIn && this.comment.length >= 3) {
       this.socialservice.addcomment(this.comment, this.itemId).subscribe(response => { this.comments.unshift(response); this.comment = '' }, error => { console.log(error) });
     }
+    else {
+      this.comment = ''
+      Swal.fire({
+        title: 'Please login',
+        text: "You need to be logged",
+        timer: 3000,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/auth/login';
+        }
+      })
+    }
   }
   enterpriseData: any = {};
   showupdate: boolean = false;

@@ -157,14 +157,15 @@
     </h5>
   </button>
   <div style="width: 100%;" class="py-3 mb-5 side-nav-items flex-column d-flex ">
+    <div class="px-3 py-3 links  ">
+      <h4 [routerLink]="['/search/map']" class="text-start m-0 p-0">map</h4>
+    </div>
+    @if ((authservice.$IsAdmin|async)) {
     <div class="px-3 py-3 links ">
-      <h4 class="text-start m-0 p-0">map</h4>
-    </div>
-    <div class="px-3 py-3 links">
-      <h4 class="text-start m-0 p-0">Just For You</h4>
-    </div>
-    <div class="px-3 py-3 links">
-      <h4 class="text-start m-0 p-0">News</h4>
+      <h4 [routerLink]="['/place/{{adminplaceid}}']" class="text-start m-0 p-0">Just For You</h4>
+    </div>}
+    <div class="px-3 py-3 links ">
+      <h4 [routerLink]="['']" class="text-start m-0 p-0">News</h4>
     </div>
   </div>
   <div class="d-flex justify-content-center mt-5">
