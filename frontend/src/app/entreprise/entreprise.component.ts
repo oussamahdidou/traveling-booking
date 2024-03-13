@@ -101,8 +101,10 @@ export class EntrepriseComponent implements OnInit {
 
   }
   addcomment() {
-    if (this.isLoggedIn && this.comment.length >= 3) {
-      this.socialservice.addcomment(this.comment, this.itemId).subscribe(response => { this.comments.unshift(response); this.comment = '' }, error => { console.log(error) });
+    if (this.isLoggedIn) {
+      if (this.comment.length >= 3) {
+        this.socialservice.addcomment(this.comment, this.itemId).subscribe(response => { this.comments.unshift(response); this.comment = '' }, error => { console.log(error) });
+      }
     }
     else {
       this.comment = ''

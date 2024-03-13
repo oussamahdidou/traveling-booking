@@ -7,6 +7,7 @@ namespace api.helpers
 {
     public class AdsQuery
     {
+        public int CityId { get; set; }
 
     }
 }

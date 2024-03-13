@@ -61,10 +61,13 @@ export class AppComponent implements OnInit {
   }
   showsearch: boolean = false;
   _showsearch() {
+    this.search = '';
     this.showsearch = !this.showsearch;
+
   }
   showsidenav() {
     this.sidenave = !this.sidenave;
+    this.search = '';
   }
   onSearch() {
     this.router.navigate([`search/query/${this.search}`]);
