@@ -144,41 +144,46 @@
 
 </nav>
 
-
-
-<div class="side-nav   bg-white flex-column" [ngClass]="{active: sidenave&&!showsearch}">
-  <button class="fw-bold bg-white border-0 p-4" (click)="showsidenav()">
-    <h5 class="m-0 p-0 fw-bold">
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-      </svg>
-    </h5>
-  </button>
-  <div style="width: 100%;" class="py-3 mb-5 side-nav-items flex-column d-flex ">
-    <div class="px-3 py-3 links  ">
-      <h4 [routerLink]="['/search/map']" class="text-start m-0 p-0">map</h4>
+<div class="side-nav-container  h-100 w-100 " [ngClass]="{active: sidenave}">
+  <div class="side-nav   bg-white flex-column" [ngClass]="{active: sidenave&&!showsearch}">
+    <button class="fw-bold bg-white border-0 p-4" (click)="showsidenav()">
+      <h5 class="m-0 p-0 fw-bold">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+      </h5>
+    </button>
+    <div style="width: 100%;" class="py-3 mb-5 side-nav-items flex-column d-flex ">
+      <div class="px-3 py-3 links  ">
+        <h4 [routerLink]="['/search/map']" class="text-start m-0 p-0">map</h4>
+      </div>
+      @if ((authservice.$IsAdmin|async)) {
+      <div class="px-3 py-3 links ">
+        <h4 [routerLink]="['/place/{{adminplaceid}}']" class="text-start m-0 p-0">Just For You</h4>
+      </div>}
+      <div class="px-3 py-3 links ">
+        <h4 [routerLink]="['']" class="text-start m-0 p-0">News</h4>
+      </div>
     </div>
-    @if ((authservice.$IsAdmin|async)) {
-    <div class="px-3 py-3 links ">
-      <h4 [routerLink]="['/place/{{adminplaceid}}']" class="text-start m-0 p-0">Just For You</h4>
-    </div>}
-    <div class="px-3 py-3 links ">
-      <h4 [routerLink]="['']" class="text-start m-0 p-0">News</h4>
+    <div class="d-flex justify-content-center mt-5">
+      @if (authservice.$isloggedin|async) {
+
+      <a href="" class="px-3 mt-5 register" (click)="logout()">Logout</a>
+      }
+      @else {
+      <a href="/auth/login" class="px-4 mt-5 login">Login</a>
+      <a href="/auth/register" class="px-3 mt-5 register">Register</a>
+      }
     </div>
   </div>
-  <div class="d-flex justify-content-center mt-5">
-    @if (authservice.$isloggedin|async) {
+  <!-- ========== <div class="side-nav-container  h-100 w-100 " [ngClass]="{active: sidenave}">
+</div> ========== -->
 
-    <a href="" class="px-3 mt-5 register" (click)="logout()">Logout</a>
-    }
-    @else {
-    <a href="/auth/login" class="px-4 mt-5 login">Login</a>
-    <a href="/auth/register" class="px-3 mt-5 register">Register</a>
-    }
-  </div>
+  <!-- ========== End Section ========== -->
 </div>
+
 }
 <router-outlet></router-outlet>
 @if(showNavbar){
@@ -370,12 +375,12 @@
     <!-- End Copyright Container -->
   </div>
   <!-- End Copyright -->
-  <!-- Back to top -->
-  <div id="back-to-top" class="back-to-top">
+  <!-- <div id="back-to-top" class="back-to-top">
     <button class="btn btn-dark" title="Back to Top" style="display: block;">
       <i class="fa fa-angle-up"></i>
     </button>
-  </div>
+  </div> -->
+
   <!-- End Back to top -->
 </footer>
 <!-- Footer -->}
