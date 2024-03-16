@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './services/search.service';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,7 +20,15 @@ export class AppComponent implements OnInit {
   villes: any[] = [];
   entreprises: any[] = [];
   sidenave: boolean = false;
-  constructor(private router: Router, public authservice: AuthService, private searchservice: SearchService) { }
+  constructor(private router: Router, public authservice: AuthService, private searchservice: SearchService) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+
+        this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
+
+      }
+    });
+  }
   adminplaceid: number = 0;
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -30,16 +39,13 @@ export class AppComponent implements OnInit {
         // You can put any logic here you want to execute upon route change
       }
     });
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
-      }
-    });
+
     this.authservice.$IsAdmin.subscribe(response => {
       if (response == true) {
         this.searchservice.getAdminplace().subscribe(response => { this.adminplaceid = response; })
       }
     })
+
 
 
   }

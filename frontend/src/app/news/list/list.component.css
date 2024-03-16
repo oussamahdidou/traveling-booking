@@ -31,3 +31,8 @@
 .top-news:hover img {
   scale: 1.5;
 }
+@media only screen and (max-width: 1050px) {
+  .top-news-container {
+    height: fit-content;
+  }
+}
