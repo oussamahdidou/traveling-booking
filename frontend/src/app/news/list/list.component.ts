@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  img: any[] = [];
 }

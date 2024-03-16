@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadChildren: () => import('./search/search.module').then((m) => m.SearchModule),
     },
     {
+        path: 'news',
+        loadChildren: () => import('./news/news.module').then((m) => m.NewsModule),
+    },
+    {
         path: 'place/:id',
         component: EntrepriseComponent,
     },
