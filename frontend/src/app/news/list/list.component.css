@@ -31,6 +31,27 @@
 .top-news:hover img {
   scale: 1.5;
 }
+.ads {
+  border: 1.5px solid rgba(0, 0, 0, 0.16);
+}
+.ad-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 1s;
+}
+.ad-card {
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.16);
+}
+.ad-card:hover img {
+  scale: 1.5;
+  filter: grayscale(100%);
+}
+.ad-img-container {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 50%;
+}
 @media only screen and (max-width: 1050px) {
   .top-news-container {
     height: fit-content;
