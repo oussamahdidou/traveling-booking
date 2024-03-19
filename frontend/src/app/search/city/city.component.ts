@@ -28,6 +28,8 @@ export class CityComponent implements OnInit {
           console.log(error)
         });
       this.searchService.TopPlacesByCity(itemId).subscribe(response => {
+        console.log(response);
+        console.log(itemId);
         this.top = response;
       })
 

@@ -1,5 +1,5 @@
 api/bin/
 api/obj/
 api/wwwroot/
-
+api/.vs/
 .fake

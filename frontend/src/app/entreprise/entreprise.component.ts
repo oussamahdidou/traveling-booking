@@ -20,13 +20,14 @@ export class EntrepriseComponent implements OnInit {
   place: any;
   countries: any[] = [];
   cities: any[] = [];
-  itemId: number = 0;
+  itemId: number = 22;
   comment: string = '';
   isLoggedIn: boolean = false;
   rating: number = 0;
   comments: any[] = [];
   constructor(public authservice: AuthService, private route: ActivatedRoute, private searchservice: SearchService, private socialservice: SocialService) { }
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.authservice.$isloggedin.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       this.route.params.subscribe(params => {

@@ -21,19 +21,21 @@ export class AppComponent implements OnInit {
   entreprises: any[] = [];
   sidenave: boolean = false;
   constructor(private router: Router, public authservice: AuthService, private searchservice: SearchService) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
 
-        this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
-
-      }
-    });
   }
   adminplaceid: number = 0;
   ngOnInit() {
     this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+        // document.body.offsetTop= 0; // Reset scroll position to the top of
+        this.showNavbar = !['/auth/login', '/auth/register', '/auth/user', '/auth/admin', '/auth/createplace', '/search/map'].includes(this.router.url);
+
+      }
+    });
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        // Increment the route change count
+        window.scrollTo(0, 0);
         this.search = '';
         this.sidenave = false;
         // You can put any logic here you want to execute upon route change
