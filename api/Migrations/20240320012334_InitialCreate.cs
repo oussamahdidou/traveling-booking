@@ -235,7 +235,8 @@ namespace api.Migrations
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    clicks = table.Column<int>(type: "int", nullable: false),
+                    Clicks = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EntrepriseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -306,8 +307,8 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "b11f381e-928a-4ad6-a9b6-a03541c6e841", null, "Admin", "ADMIN" },
-                    { "f28c2464-3579-411f-8065-539d67297837", null, "User", "User" }
+                    { "eb9f50aa-81cb-41de-b6a4-24f25176265e", null, "User", "User" },
+                    { "fef6b79e-6d93-4637-b69e-f96f15393da6", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

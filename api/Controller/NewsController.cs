@@ -42,5 +42,6 @@ namespace api.Controller
             if (ads == null) return BadRequest();
             return Ok(ads);
         }
+        //public async Task<IActionResult> GetTodaysPosts()
     }
 }

@@ -51,13 +51,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b11f381e-928a-4ad6-a9b6-a03541c6e841",
+                            Id = "fef6b79e-6d93-4637-b69e-f96f15393da6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f28c2464-3579-411f-8065-539d67297837",
+                            Id = "eb9f50aa-81cb-41de-b6a4-24f25176265e",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -177,8 +177,14 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Clicks")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EntrepriseId")
                         .HasColumnType("int");
@@ -188,9 +194,6 @@ namespace api.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("clicks")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

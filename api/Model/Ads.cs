@@ -13,7 +13,8 @@ namespace api.Model
         public string? Image { get; set; }
         public string? Content { get; set; }
         public string? Title { get; set; }
-        public int clicks { get; set; } = 0;
+        public int Clicks { get; set; } = 0;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public int EntrepriseId { get; set; }
         public Entreprise? Entreprise { get; set; }
     }
