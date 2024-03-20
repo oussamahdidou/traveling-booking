@@ -26,7 +26,7 @@ namespace api.Controller
             this.userManager = userManager;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("Place/{id:int}")]
         public async Task<IActionResult> GetAdsByPlaceAsync([FromRoute] int id)
         {
             List<Ads> ads = await adsRepository.GetAdsByPlace(id);
@@ -43,19 +43,19 @@ namespace api.Controller
             if (ads == null) return BadRequest();
             return Ok(ads);
         }
-        [HttpGet]
+        [HttpGet("Today")]
         public async Task<IActionResult> GetTodaysPosts()
         {
             List<Ads> ads = await adsRepository.GetTodaysPosts();
             return Ok(ads);
         }
-        [HttpGet]
+        [HttpGet("Top")]
         public async Task<IActionResult> GetTopsPosts()
         {
             List<Ads> ads = await adsRepository.GetTopPosts();
             return Ok(ads);
         }
-        [HttpGet]
+        [HttpGet("Sponsored")]
         public async Task<IActionResult> GetSponsoredPosts()
         {
             List<Ads> ads = await adsRepository.GetSponsoredPosts();
