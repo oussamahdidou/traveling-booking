@@ -75,5 +75,37 @@ namespace api.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Ads>> GetSponsoredPosts()
+        {
+            List<Ads> ads = await apiDbContext.Ads
+                 .Include(x => x.Entreprise)
+                 .Where(x => x.Entreprise.Supported == true)
+                 .OrderByDescending(ad => ad.Clicks)
+                 .Take(4)
+                 .ToListAsync();
+            return ads;
+        }
+
+        public async Task<List<Ads>> GetTodaysPosts()
+        {
+            List<Ads> ads = await apiDbContext.Ads
+                            .Where(x => x.CreatedAt.Date == DateTime.Today)
+                            .OrderByDescending(ad => ad.Clicks)
+                            .Include(x => x.Entreprise)
+                            .Take(4)
+                            .ToListAsync();
+            return ads;
+        }
+
+        public async Task<List<Ads>> GetTopPosts()
+        {
+            List<Ads> ads = await apiDbContext.Ads
+                .OrderByDescending(ad => ad.Clicks)
+                .Include(x => x.Entreprise)
+                .Take(4)
+                .ToListAsync();
+            return ads;
+        }
     }
 }

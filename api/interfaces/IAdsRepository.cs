@@ -13,6 +13,9 @@ namespace api.interfaces
         Task<Ads> CreateAd(CreateAdDto createAdDto);
         Task<List<Ads>> GetAllAds(AdsQuery query);
         Task<List<Ads>> GetAdsByPlace(int cityid);
+        Task<List<Ads>> GetTodaysPosts();
+        Task<List<Ads>> GetTopPosts();
+        Task<List<Ads>> GetSponsoredPosts();
 
     }
 }

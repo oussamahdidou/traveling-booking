@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using api.Extensions;
+using api.Data;
 namespace api.Controller
 {
     [ApiController]
@@ -42,6 +43,23 @@ namespace api.Controller
             if (ads == null) return BadRequest();
             return Ok(ads);
         }
-        //public async Task<IActionResult> GetTodaysPosts()
+        [HttpGet]
+        public async Task<IActionResult> GetTodaysPosts()
+        {
+            List<Ads> ads = await adsRepository.GetTodaysPosts();
+            return Ok(ads);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetTopsPosts()
+        {
+            List<Ads> ads = await adsRepository.GetTopPosts();
+            return Ok(ads);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetSponsoredPosts()
+        {
+            List<Ads> ads = await adsRepository.GetSponsoredPosts();
+            return Ok(ads);
+        }
     }
 }
