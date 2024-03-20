@@ -51,13 +51,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eca48876-dace-46c1-8707-9a1e6d73eaf4",
+                            Id = "b11f381e-928a-4ad6-a9b6-a03541c6e841",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c5b04242-863c-45b6-a851-89b730947c45",
+                            Id = "f28c2464-3579-411f-8065-539d67297837",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -188,6 +188,9 @@ namespace api.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("clicks")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
