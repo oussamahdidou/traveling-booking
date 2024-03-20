@@ -12,7 +12,7 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(apiDbContext))]
-    [Migration("20240320012334_InitialCreate")]
+    [Migration("20240320173100_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fef6b79e-6d93-4637-b69e-f96f15393da6",
+                            Id = "6b1dd915-6473-4dcf-a9aa-a7e42c49eb45",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "eb9f50aa-81cb-41de-b6a4-24f25176265e",
+                            Id = "fd1ad2f2-18c5-4081-835b-111b8e8e3924",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -313,6 +313,18 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Morocco"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "France"
+                        });
                 });
 
             modelBuilder.Entity("api.Model.Entreprise", b =>
@@ -408,6 +420,32 @@ namespace api.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Villes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            Latitude = 0.0,
+                            Longitude = 0.0,
+                            Name = "Casablanca"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            Latitude = 0.0,
+                            Longitude = 0.0,
+                            Name = "Marrakech"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 1,
+                            Latitude = 0.0,
+                            Longitude = 0.0,
+                            Name = "Errachidia"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

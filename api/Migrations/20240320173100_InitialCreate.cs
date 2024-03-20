@@ -307,8 +307,27 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "eb9f50aa-81cb-41de-b6a4-24f25176265e", null, "User", "User" },
-                    { "fef6b79e-6d93-4637-b69e-f96f15393da6", null, "Admin", "ADMIN" }
+                    { "6b1dd915-6473-4dcf-a9aa-a7e42c49eb45", null, "Admin", "ADMIN" },
+                    { "fd1ad2f2-18c5-4081-835b-111b8e8e3924", null, "User", "User" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Morocco" },
+                    { 2, "France" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Villes",
+                columns: new[] { "Id", "CountryId", "Latitude", "Longitude", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, 0.0, 0.0, "Casablanca" },
+                    { 2, 1, 0.0, 0.0, "Marrakech" },
+                    { 3, 1, 0.0, 0.0, "Errachidia" }
                 });
 
             migrationBuilder.CreateIndex(
