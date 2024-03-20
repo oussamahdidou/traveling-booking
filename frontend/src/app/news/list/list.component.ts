@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-  img: any[] = [];
+  pub: any[] = [
+    { title: "publication title", description: "description de la publication" },
+    { title: "publication title", description: "description de la publication" },
+    { title: "publication title", description: "description de la publication" },
+    { title: "publication title", description: "description de la publication" },
+
+
+  ];
 }
