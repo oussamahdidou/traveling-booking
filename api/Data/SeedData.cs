@@ -25,13 +25,13 @@ namespace api.Data
                 {
                     await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
-                string admin1Email = "oussamahdidou15@gmail.com";
+                string admin1Email = "admin115@gmail.com";
                 var admin1 = await usermanager.FindByEmailAsync(admin1Email);
                 if (admin1 == null)
                 {
                     var newadmin1 = new AppUser()
                     {
-                        UserName = "oussamahdidou",
+                        UserName = "admin1",
                         Email = admin1Email,
                         EmailConfirmed = true,
                     };
@@ -43,13 +43,13 @@ namespace api.Data
                 {
                     await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
-                string admin2Email = "oussamahdidou15@gmail.com";
+                string admin2Email = "admin215@gmail.com";
                 var admin2 = await usermanager.FindByEmailAsync(admin2Email);
                 if (admin2 == null)
                 {
                     var newadmin2 = new AppUser()
                     {
-                        UserName = "oussamahdidou",
+                        UserName = "admin2",
                         Email = admin2Email,
                         EmailConfirmed = true,
                     };
@@ -61,13 +61,13 @@ namespace api.Data
                 {
                     await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
-                string admin3Email = "oussamahdidou15@gmail.com";
+                string admin3Email = "admin315@gmail.com";
                 var admin3 = await usermanager.FindByEmailAsync(admin3Email);
                 if (admin3 == null)
                 {
                     var newadmin3 = new AppUser()
                     {
-                        UserName = "oussamahdidou",
+                        UserName = "admin3",
                         Email = admin3Email,
                         EmailConfirmed = true,
 
@@ -80,26 +80,20 @@ namespace api.Data
                 {
                     await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
-                string admin4Email = "oussamahdidou15@gmail.com";
+                string admin4Email = "admin415@gmail.com";
                 var admin4 = await usermanager.FindByEmailAsync(admin4Email);
                 if (admin4 == null)
                 {
                     var newadmin4 = new AppUser()
                     {
-                        UserName = "oussamahdidou",
+                        UserName = "admin4",
                         Email = admin4Email,
                         EmailConfirmed = true,
                     };
                     await usermanager.CreateAsync(newadmin4, "Coding@1234?");
                     await usermanager.AddToRoleAsync(newadmin4, UserRoles.Admin);
                 }
-                List<Entreprise> entreprises = new List<Entreprise>()
-                {
-                    new Entreprise(){
 
-                    }
-
-                };
                 //Tourists
                 if (!await RoleManager.RoleExistsAsync(UserRoles.Student))
                 {
