@@ -89,6 +89,7 @@ export class CreatepalceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchservice.CreatePlace(formData).subscribe(
       response => {
         console.log(response);
+        this.router.navigate(['/place', response.id]);
 
       },
       error => {
