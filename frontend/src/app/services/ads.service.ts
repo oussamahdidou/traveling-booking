@@ -10,13 +10,7 @@ export class AdsService {
 
   constructor(private http: HttpClient, private authservice: AuthService) { }
   createad(adData: any): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('content', adData.content);
-    formData.append('title', adData.title);
-    formData.append('entrepriseId', adData.entrepriseId.toString());
-    formData.append('image', adData.image);
-    return this.http.post('http://localhost:5163/api/News', formData, { headers: this.authservice.headers })
-
+    return this.http.post('http://localhost:5163/api/News', adData, { headers: this.authservice.headers })
   }
   getadsbyEntreprise(id: number): Observable<any> {
     return this.http.get(`http://localhost:5163/api/News/Place/${id}`);

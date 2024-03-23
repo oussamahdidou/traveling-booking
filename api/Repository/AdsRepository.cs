@@ -7,6 +7,8 @@ using api.Dtos.Ads;
 using api.helpers;
 using api.interfaces;
 using api.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.Internal;
 
@@ -22,6 +24,7 @@ namespace api.Repository
             this.apiDbContext = apiDbContext;
             this.IWebHostEnvironment = IWebHostEnvironment;
         }
+
         public async Task<Ads> CreateAd(CreateAdDto createAdDto)
         {
             var file = createAdDto.Image;

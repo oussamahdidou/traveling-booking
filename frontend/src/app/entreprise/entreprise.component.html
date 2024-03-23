@@ -135,7 +135,8 @@
                 <div class="text-secondary">
                     <p>no content for this place</p>
                     @if (place.appUser.id==authservice.token.unique_name) {
-                    <button class="update-button mt-3 px-4 py-3 me-auto ">Add the first pub</button>
+                    <button [routerLink]="['/news/create']" class="update-button mt-3 px-4 py-3 me-auto ">Add the first
+                        pub</button>
 
                     }
                 </div>
