@@ -116,29 +116,31 @@
         </div>
     </div>
     <div class="col-lg-4 py-4">
-        <h3 class="m-0 ps-3"> Similar Places</h3>
+        <h3 class="m-0 ps-3"> Place publications</h3>
         <div class="d-flex flex-column  gap-3 py-4">
+            @if (news.length>0) {
+            @for (item of news; track $index) {
             <div class=" py-2 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2  ">
-                <img src="http://via.placeholder.com/640x360" alt="">
+                <img class="pub-image" src="{{item.image}}" alt="">
                 <div class="card-content p-3">
-                    <h5>Hotel Name</h5>
-                    <h6 class="text-secondary mb-0">Hotel adress</h6>
-                    <div class="rating">
-                        <input type="radio">
-                        <label></label>
-                        <input type="radio">
-                        <label></label>
-                        <input type="radio">
-                        <label></label>
-                        <input type="radio">
-                        <label></label>
-                        <input type="radio">
-                        <label></label>
-                    </div>
-
+                    <h5>{{item.title}}</h5>
+                    <h6 class="text-secondary mb-0">{{item.content| truncate: 200 }}</h6>
                 </div>
             </div>
+            }
 
+            }
+            @else {
+            <div class="empty-list py-4 mx-auto">
+                <div class="text-secondary">
+                    <p>no content for this place</p>
+                    @if (place.appUser.id==authservice.token.unique_name) {
+                    <button class="update-button mt-3 px-4 py-3 me-auto ">Add the first pub</button>
+
+                    }
+                </div>
+            </div>
+            }
         </div>
     </div>
 </div>

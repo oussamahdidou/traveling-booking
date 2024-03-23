@@ -15,7 +15,11 @@ export class AdsService {
     formData.append('title', adData.title);
     formData.append('entrepriseId', adData.entrepriseId.toString());
     formData.append('image', adData.image);
-    return this.http.post('http://localhost:5163/api/Ads', formData, { headers: this.authservice.headers })
+    return this.http.post('http://localhost:5163/api/News', formData, { headers: this.authservice.headers })
 
   }
+  getadsbyEntreprise(id: number): Observable<any> {
+    return this.http.get(`http://localhost:5163/api/News/Place/${id}`);
+  }
+
 }

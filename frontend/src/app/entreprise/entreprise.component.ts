@@ -7,14 +7,16 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { AdsService } from '../services/ads.service';
+import { TruncatePipe } from "../pipes/truncate.pipe";
 
 @Component({
   selector: 'app-entreprise',
   standalone: true,
-  providers: [AuthService, SearchService, SocialService],
-  imports: [HttpClientModule, RouterModule, FormsModule, CommonModule],
+  providers: [AuthService, SearchService, SocialService, AdsService],
   templateUrl: './entreprise.component.html',
-  styleUrl: './entreprise.component.css'
+  styleUrl: './entreprise.component.css',
+  imports: [HttpClientModule, RouterModule, FormsModule, CommonModule, TruncatePipe]
 })
 export class EntrepriseComponent implements OnInit {
   place: any;
@@ -25,7 +27,8 @@ export class EntrepriseComponent implements OnInit {
   isLoggedIn: boolean = false;
   rating: number = 0;
   comments: any[] = [];
-  constructor(public authservice: AuthService, private route: ActivatedRoute, private searchservice: SearchService, private socialservice: SocialService) { }
+  news: any[] = [];
+  constructor(private adsService: AdsService, public authservice: AuthService, private route: ActivatedRoute, private searchservice: SearchService, private socialservice: SocialService) { }
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.authservice.$isloggedin.subscribe(isLoggedIn => {
@@ -44,6 +47,15 @@ export class EntrepriseComponent implements OnInit {
           error => {
             console.log(error)
           });
+        this.adsService.getadsbyEntreprise(this.itemId).subscribe(
+          response => {
+            this.news = response;
+            console.log(this.news)
+          },
+          error => {
+            console.log(error);
+          }
+        )
       });
       if (this.isLoggedIn) {
         this.socialservice.getuserrate(this.itemId).subscribe(

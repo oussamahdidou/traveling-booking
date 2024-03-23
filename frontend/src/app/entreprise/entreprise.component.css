@@ -123,3 +123,7 @@ textarea {
   border: 1px solid #000;
   font-weight: 600;
 }
+.pub-image {
+  aspect-ratio: 16/9;
+  width: 100%;
+}

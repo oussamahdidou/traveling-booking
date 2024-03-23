@@ -49,7 +49,7 @@
 
   <div class="nav-items d-flex">
     <a href="/search/map" class="nav-item m-0 p-0 me-4">Map</a>
-    <a href="" class="nav-item m-0 p-0 mx-4">News</a>
+    <a href="/news" class="nav-item m-0 p-0 mx-4">News</a>
     @if ((authservice.$IsAdmin|async)) {
     <a href="/place/{{adminplaceid}}" class="nav-item m-0 p-0 ms-4">Just For You</a>
     }
@@ -164,7 +164,7 @@
         <h4 [routerLink]="['/place/{{adminplaceid}}']" class="text-start m-0 p-0">Just For You</h4>
       </div>}
       <div class="px-3 py-3 links ">
-        <h4 [routerLink]="['']" class="text-start m-0 p-0">News</h4>
+        <h4 [routerLink]="['/news']" class="text-start m-0 p-0">News</h4>
       </div>
     </div>
     <div class="d-flex justify-content-center mt-5">
