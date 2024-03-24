@@ -5,12 +5,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from '../pipes/truncate.pipe';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, TruncatePipe],
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, TruncatePipe, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

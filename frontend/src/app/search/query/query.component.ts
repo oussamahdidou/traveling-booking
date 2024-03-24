@@ -4,12 +4,13 @@ import { SearchService } from '../../services/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-query',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe],
+  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe, HeaderComponent],
   templateUrl: './query.component.html',
   styleUrl: './query.component.css'
 })

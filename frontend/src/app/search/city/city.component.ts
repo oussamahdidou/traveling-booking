@@ -4,12 +4,13 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-city',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe],
+  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe, HeaderComponent],
   templateUrl: './city.component.html',
   styleUrl: './city.component.css'
 })

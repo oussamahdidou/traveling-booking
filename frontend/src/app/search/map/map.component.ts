@@ -3,11 +3,12 @@ import { Router, RouterModule } from '@angular/router';
 import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
 
 import '@maptiler/sdk/dist/maptiler-sdk.css';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, HeaderComponent],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })

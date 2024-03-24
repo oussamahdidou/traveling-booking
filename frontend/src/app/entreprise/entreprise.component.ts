@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { AdsService } from '../services/ads.service';
 import { TruncatePipe } from "../pipes/truncate.pipe";
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-entreprise',
@@ -16,7 +17,7 @@ import { TruncatePipe } from "../pipes/truncate.pipe";
   providers: [AuthService, SearchService, SocialService, AdsService],
   templateUrl: './entreprise.component.html',
   styleUrl: './entreprise.component.css',
-  imports: [HttpClientModule, RouterModule, FormsModule, CommonModule, TruncatePipe]
+  imports: [HttpClientModule, RouterModule, FormsModule, CommonModule, TruncatePipe, HeaderComponent]
 })
 export class EntrepriseComponent implements OnInit {
   place: any;
