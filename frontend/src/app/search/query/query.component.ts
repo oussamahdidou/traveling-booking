@@ -6,12 +6,13 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { HorisontalplaceholderComponent } from '../../placeholders/horisontalplaceholder/horisontalplaceholder.component';
 
 @Component({
   selector: 'app-query',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HttpClientModule, RouterModule, HorisontalplaceholderComponent, TruncatePipe, HeaderComponent, FooterComponent],
   templateUrl: './query.component.html',
   styleUrl: './query.component.css'
 })

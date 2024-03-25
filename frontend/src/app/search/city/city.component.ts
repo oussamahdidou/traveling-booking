@@ -6,12 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { HorisontalplaceholderComponent } from '../../placeholders/horisontalplaceholder/horisontalplaceholder.component';
 
 @Component({
   selector: 'app-city',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, TruncatePipe, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HttpClientModule, HorisontalplaceholderComponent, RouterModule, TruncatePipe, HeaderComponent, FooterComponent],
   templateUrl: './city.component.html',
   styleUrl: './city.component.css'
 })

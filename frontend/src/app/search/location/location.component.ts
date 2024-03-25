@@ -6,11 +6,12 @@ import { SearchService } from '../../services/search.service';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { HorisontalplaceholderComponent } from '../../placeholders/horisontalplaceholder/horisontalplaceholder.component';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule, TruncatePipe, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterModule, HorisontalplaceholderComponent, HttpClientModule, TruncatePipe, HeaderComponent, FooterComponent],
   templateUrl: './location.component.html',
   styleUrl: './location.component.css'
 })

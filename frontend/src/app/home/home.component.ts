@@ -7,12 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { VerticalplaceholderComponent } from '../placeholders/verticalplaceholder/verticalplaceholder.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, FooterComponent, RouterModule, FormsModule, TruncatePipe, HeaderComponent],
+  imports: [CommonModule, HttpClientModule, VerticalplaceholderComponent, FooterComponent, RouterModule, FormsModule, TruncatePipe, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
