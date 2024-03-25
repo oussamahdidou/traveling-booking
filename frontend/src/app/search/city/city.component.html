@@ -1,5 +1,5 @@
 <app-header></app-header>
-@if (places.length>0) {
+
 <div class="slider-part justify-content-center align-items-center mt-3 position-relative">
     <div class="leftright d-flex justify-content-between align-items-center px-3">
         <button class="border-0 bg-white" (click)="movetonext($event)">
@@ -18,7 +18,9 @@
         </button>
     </div>
     <div class="container-fluid slide-container d-flex ">
-
+        @if (!isLoadingTop) {
+        <app-horisontalplaceholder style="width: 100%; "></app-horisontalplaceholder>
+        }
         @for (item of top; track $index) {
         <div (click)="gotoplace(item.id)" class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
         'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
@@ -51,12 +53,12 @@
 
         }
     </div>
-</div>}
+</div>
 
 @if (places.length> 0) {
 <div class="mb-5 container-fluid d-flex flex-column align-items-center justify-content-between py-4">
+    @if (isLoading) {
     @for (item of places; track $index) {
-    @defer (on timer(3s)) {
     <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2" style="cursor: pointer;">
         <div class="col-lg-4">
             <img style="height: 250px;" src="{{item.image}}" alt="">
@@ -85,15 +87,14 @@
 
         </div>
     </div>
-    }
-    @placeholder {
+    }}
+    @else {
     <app-horisontalplaceholder style="width: 100%; "></app-horisontalplaceholder>
-    }
     }
 
 
 </div>}
-@else {
+@else if (isLoading) {
 <div class="notfound py-5 mb-5">
     <h5 class="text-center text-secondary py-5 mb-5"> No Places Found</h5>
 

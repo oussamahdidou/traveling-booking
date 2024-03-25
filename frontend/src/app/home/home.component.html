@@ -17,12 +17,12 @@
         </button>
     </div>
     <div class="container-fluid slide-container d-flex ">
-
+        @if (isLoading) {
         @for (item of top; track $index) {
         <div (click)="gotoplace(item.id)" class="slider-item" [ngClass]="{'selected': selectedIndex===$index, 
-        'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
-        'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
-        ">
+                'next':selectedIndex===$index+1,'prev':selectedIndex===$index-1,
+                'hideleft':selectedIndex>$index+1,'hideright':selectedIndex < $index+1} 
+                ">
             <div class="insideleftright d-flex justify-content-between align-items-center px-3">
                 <button class="border-0 bg-transparent text-white" (click)="movetonext($event)">
                     <svg style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -49,6 +49,11 @@
         </div>
 
         }
+        }
+        @else {
+        <app-verticalplaceholder class="h-100 w-100 p-0 m-0"></app-verticalplaceholder>
+        }
+
     </div>
 </div>
 <div class="container search-fields p-4 my-5">
@@ -97,8 +102,9 @@
 <div class="container-fluid mb-5">
     <h4 class="ps-5">Discover the best places for you hotels</h4>
     <div class="container row mx-auto pt-3">
+        @if (isLoading) {
         @for (item of hotels; track $index) {
-        @defer (on timer(3s)) {
+
         <div [routerLink]="['/place/'+item.id]" style="cursor: pointer;"
             class="col-lg-3 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2  ">
             <img loading="lazy" src="{{item.image}}" style="width: 100%; height: 200px;" alt="">
@@ -122,22 +128,29 @@
                 </div>
             </div>
         </div>
+
         }
-        @placeholder {
+        }
+        @else {
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
         <div class="col-lg-3 m-0 px-2">
             <app-verticalplaceholder></app-verticalplaceholder>
         </div>
         }
-
-        }
-
-
     </div>
 
     <h4 class="ps-5">Discover the best places for you Restaurent</h4>
     <div class="container row mx-auto py-3">
+        @if (isLoading) {
         @for (item of restaurants; track $index) {
-        @defer (on timer(3s)) {
         <div [routerLink]="['/place/'+item.id]" style="cursor: pointer;"
             class="col-lg-3 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2  ">
             <img loading="lazy" src="{{item.image}}" style="width: 100%; height: 200px;" alt="">
@@ -162,19 +175,27 @@
             </div>
         </div>
         }
-        @placeholder {
+        }
+        @else {
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
         <div class="col-lg-3 m-0 px-2">
             <app-verticalplaceholder></app-verticalplaceholder>
         </div>
         }
-        }
-
 
     </div>
     <h4 class="ps-5">Discover the best places for you Activities</h4>
     <div class="container row mx-auto py-3">
+        @if (isLoading) {
         @for (item of activities; track $index) {
-        @defer (on timer(3s)) {
         <div [routerLink]="['/place/'+item.id]" style="cursor: pointer;"
             class="col-lg-3 d-flex flex-column justify-content-center align-items-center hotel-card m-0 px-2  ">
             <img loading="lazy" src="{{item.image}}" style="width: 100%; height: 200px;" alt="">
@@ -198,16 +219,21 @@
                 </div>
             </div>
         </div>
-        }
-        @placeholder {
+        }}
+        @else {
         <div class="col-lg-3 m-0 px-2">
             <app-verticalplaceholder></app-verticalplaceholder>
-
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
+        </div>
+        <div class="col-lg-3 m-0 px-2">
+            <app-verticalplaceholder></app-verticalplaceholder>
         </div>
         }
-        }
-
-
     </div>
 </div>
 <app-footer></app-footer>

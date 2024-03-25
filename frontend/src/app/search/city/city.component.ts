@@ -18,6 +18,8 @@ import { HorisontalplaceholderComponent } from '../../placeholders/horisontalpla
 })
 export class CityComponent implements OnInit {
   places: any[] = [];
+  isLoading: boolean = false;
+  isLoadingTop: boolean = false;
   top: any[] = [];
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
   ngOnInit(): void {
@@ -26,14 +28,17 @@ export class CityComponent implements OnInit {
       this.searchService.PlacesByCity(itemId).subscribe(
         response => {
           this.places = response;
+          this.isLoading = true;
         },
         error => {
+          this.isLoading = true;
           console.log(error)
         });
       this.searchService.TopPlacesByCity(itemId).subscribe(response => {
         console.log(response);
         console.log(itemId);
         this.top = response;
+        this.isLoadingTop = true;
       })
 
     });

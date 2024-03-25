@@ -18,6 +18,7 @@ import { VerticalplaceholderComponent } from '../placeholders/verticalplaceholde
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  isLoading: boolean = false;
   countries: any[] = [];
   cities: any[] = [];
   city: number = 0;
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
       this.restaurants = reposnse.restaurant;
       this.activities = reposnse.activities;
 
-
+      this.isLoading = true;
     })
     this.searchservice.GetCountries().subscribe(
       response => {
