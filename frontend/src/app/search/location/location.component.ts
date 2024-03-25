@@ -5,11 +5,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { HeaderComponent } from '../../header/header.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule, TruncatePipe, HeaderComponent],
+  imports: [CommonModule, RouterModule, HttpClientModule, TruncatePipe, HeaderComponent, FooterComponent],
   templateUrl: './location.component.html',
   styleUrl: './location.component.css'
 })

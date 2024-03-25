@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { AdsService } from '../services/ads.service';
 import { TruncatePipe } from "../pipes/truncate.pipe";
 import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-entreprise',
@@ -17,7 +18,7 @@ import { HeaderComponent } from '../header/header.component';
   providers: [AuthService, SearchService, SocialService, AdsService],
   templateUrl: './entreprise.component.html',
   styleUrl: './entreprise.component.css',
-  imports: [HttpClientModule, RouterModule, FormsModule, CommonModule, TruncatePipe, HeaderComponent]
+  imports: [HttpClientModule, RouterModule, FormsModule, FooterComponent, CommonModule, TruncatePipe, HeaderComponent]
 })
 export class EntrepriseComponent implements OnInit {
   place: any;

@@ -6,12 +6,13 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   providers: [SearchService],
-  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule, TruncatePipe, HeaderComponent],
+  imports: [CommonModule, HttpClientModule, FooterComponent, RouterModule, FormsModule, TruncatePipe, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
