@@ -61,9 +61,12 @@
 
 
 
-<div class="my-5 container-fluid d-flex flex-column align-items-center justify-content-between py-4" infiniteScroll
-    [infiniteScrollDistance]="0" [infiniteScrollThrottle]="100" (scrolled)="onScroll()" [scrollWindow]="false">
-
+<div class="my-5
+    container-fluid 
+    d-flex
+    flex-column 
+    align-items-center
+    justify-content-between py-4">
     @if (places.length> 0) {
     @for (item of places; track $index) {
     <div [routerLink]="['/place/'+item.id]" class="row item container-fluid py-2" style="cursor: pointer;">
@@ -99,7 +102,6 @@
     @else if (!isLoading) {
     <div class="notfound py-5 mb-5">
         <h5 class="text-center text-secondary py-5 mb-5"> No Places Found</h5>
-
     </div>
     }
     @if (isLoading) {
@@ -108,7 +110,6 @@
     <app-horisontalplaceholder style="width: 100%; "></app-horisontalplaceholder>
     <app-horisontalplaceholder style="width: 100%; "></app-horisontalplaceholder>
     <app-horisontalplaceholder style="width: 100%; "></app-horisontalplaceholder>
-
     }
 </div>
 
